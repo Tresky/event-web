@@ -1,0 +1,13 @@
+{
+  "parser": "babel-eslint",
+  "extends": [
+    "standard",
+    "angular"
+  ],
+  "rules": {
+    "angular/controller-as-route": 2,
+    "angular/controller-as-vm": [2, "vm"],
+    "angular/deferred": 2,
+    "angular/empty-controller": 2
+  }
+}

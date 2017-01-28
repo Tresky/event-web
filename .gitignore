@@ -1,0 +1,6 @@
+.DS_Store
+build
+config
+node_modules
+src/bower_components
+yarn.lock
