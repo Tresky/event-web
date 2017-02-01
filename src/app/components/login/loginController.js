@@ -1,3 +1,11 @@
+/**
+ * File: LoginController.js
+ * Type: ngController
+ * Author: Tyler Gauntlett
+ * Description: This controller is specific to the
+ * login page of the application.
+ */
+
 import './loginStyles.styl'
 
 angular.module('app')

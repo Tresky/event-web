@@ -6,7 +6,6 @@ angular.module('app')
       template: require('./navBarView.html'),
       restrict: 'A',
       scope: {
-        flag: '='
       }
     }
   }
