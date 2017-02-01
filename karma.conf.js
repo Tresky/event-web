@@ -1,20 +1,17 @@
+let webpackConfig = require('./webpack.config.dev')
+webpackConfig.entry = {}
+
 module.exports = function (config) {
   config.set({
 
     basePath: '.',
 
     files: [
-      'src/bower_components/angular/angular.js',
-      'src/bower_components/angular-mocks/angular-mocks.js',
-      'src/bower_components/angular-ui-router/release/angular-ui-router.min.js',
-      'src/scripts/index.js',
-      'src/scripts/**/*.js',
+      'src/app/index.js',
+      'node_modules/angular-mocks/angular-mocks.js',
+      'test/unit/test.js',
       'test/unit/**/*.js'
     ],
-
-    'proxies': {
-      '/': 'http://localhost:5000'
-    },
 
     autoWatch: true,
 
@@ -22,16 +19,16 @@ module.exports = function (config) {
 
     browsers: ['Chrome'],
 
-    plugins: [
-      'karma-chrome-launcher',
-      'karma-firefox-launcher',
-      'karma-jasmine'
-    ],
+    preprocessors: {
+      'src/app/index.js': ['webpack'],
+      'test/unit/test.js': ['babel'],
+      'test/unit/**/*.js': ['babel']
+    },
 
-    junitReporter: {
-      outputFile: 'test_out/unit.xml',
-      suite: 'unit'
-    }
+    webpackMiddleware: {
+      stats: 'errors-only'
+    },
 
+    webpack: webpackConfig
   })
 }
