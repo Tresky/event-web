@@ -1,4 +1,4 @@
-let webpackConfig = require('./webpack.config.dev')
+var webpackConfig = require('./webpack.config.dev')
 webpackConfig.entry = {}
 
 module.exports = function (config) {
