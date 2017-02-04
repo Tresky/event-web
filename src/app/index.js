@@ -1,5 +1,6 @@
 import angular from 'angular'
 import uiRouter from 'angular-ui-router'
+import _ from 'lodash'
 
 import './styles/index.styl'
 

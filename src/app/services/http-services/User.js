@@ -1,0 +1,66 @@
+angular.module('app')
+  .factory('User', ($q, $http) => {
+    let baseUrl = 'http://localhost:3000/api/user'
+
+    let User = (initData) => {
+      let user = {}
+      angular.extend(user, initData)
+
+      // Instance Methods
+      return user
+    }
+
+    // Class Methods
+    let Users = {
+
+      findAll (params) {
+        return $http.get(baseUrl, params)
+          .then((user) => {
+            return _.map(user, (i) => { 
+              return new User(i) 
+            })
+          }, (response) => {
+            return $q.reject(response)
+          })
+      },
+
+      findById (id) {
+        return $http.get(baseUrl + '/' + id)
+          .then((user) => {
+            return User.new(user)
+          }, (response) => {
+            return $q.reject(response)
+          })
+      },
+
+      // Creates a new User
+      create (data) {
+        return $http.post(baseUrl, data)
+          .then((user) => {
+            return User.new(user)
+          }, (response) => {
+            return $q.reject(response)
+          })
+      },
+
+      update (params) {
+        return $http.put(baseUrl + '/' + id, params)
+          .then((user) => {
+            return User.new(user)
+          }, (response) => {
+            return $q.reject(response)
+          })
+      },
+
+      destroy (id) {
+        return $http.delete(baseUrl+ '/' + id)
+          .then((user) => {
+            return User.new(user)
+          }, (response) => {
+            return $q.reject(response)
+          })
+      }
+    }
+
+    return Users
+  })
