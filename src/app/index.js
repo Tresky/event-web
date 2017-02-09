@@ -25,12 +25,18 @@ angular.module('app', [
         controller: 'HomeController',
         controllerAs: 'vm'
       })
-       .state('login', {
-         url: '/login',
-         template: require('./components/login/loginView.html'),
-         controller: 'LoginController',
-         controllerAs: 'vm'
-       })
+      .state('login', {
+        url: '/login',
+        template: require('./components/login/loginView.html'),
+        controller: 'LoginController',
+        controllerAs: 'vm'
+      })
+      .state('event', {
+        url: '/event',
+        template: require('./components/event/eventView.html'),
+        controller: 'EventController',
+        controllerAs: 'vm'
+      })
 
     // If no states were matched, redirect to home
     $urlRouterProvider.otherwise('home')
