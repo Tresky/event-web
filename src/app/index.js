@@ -37,6 +37,12 @@ angular.module('app', [
         controller: 'EventController',
         controllerAs: 'vm'
       })
+      .state('university', {
+        url: '/university',
+        template: require('./components/university/universityView.html'),
+        controller: 'UniversityController',
+        controllerAs: 'vm'
+      })
 
     // If no states were matched, redirect to home
     $urlRouterProvider.otherwise('home')
