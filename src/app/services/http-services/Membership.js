@@ -1,0 +1,66 @@
+angular.module('app')
+  .factory('Membership', ($q, $http) => {
+    let baseUrl = 'http://localhost:3000/api/membership'
+
+    let Membership = (initData) => {
+      let mem = {}
+      angular.extend(mem, initData)
+
+      // Instance Methods
+      return mem
+    }
+
+    // Class Methods
+    let Memberships = {
+
+      findAll (params) {
+        return $http.get(baseUrl, params)
+          .then((mem) => {
+            return _.map(mem, (i) => { 
+              return new Membership(i) 
+            })
+          }, (response) => {
+            return $q.reject(response)
+          })
+      },
+
+      findById (id) {
+        return $http.get(baseUrl + '/' + id)
+          .then((mem) => {
+            return Membership.new(mem)
+          }, (response) => {
+            return $q.reject(response)
+          })
+      },
+
+      // Creates a new Membership
+      create (data) {
+        return $http.post(baseUrl, data)
+          .then((mem) => {
+            return Membership.new(mem)
+          }, (response) => {
+            return $q.reject(response)
+          })
+      },
+
+      update (params) {
+        return $http.put(baseUrl + '/' + id, params)
+          .then((mem) => {
+            return Membership.new(mem)
+          }, (response) => {
+            return $q.reject(response)
+          })
+      },
+
+      destroy (id) {
+        return $http.delete(baseUrl+ '/' + id)
+          .then((mem) => {
+            return Membership.new(mem)
+          }, (response) => {
+            return $q.reject(response)
+          })
+      }
+    }
+
+    return Memberships
+  })
