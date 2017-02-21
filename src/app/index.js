@@ -72,6 +72,12 @@ angular.module('app', [
           $state.go('login')
         }]
       })
+      .state('event', {
+        url: '/event',
+        template: require('./components/event/eventView.html'),
+        controller: 'EventController',
+        controllerAs: 'vm'
+      })
 
     // If no states were matched, redirect to home
     $urlRouterProvider.otherwise('home')
