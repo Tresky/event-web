@@ -9,11 +9,11 @@
 import './eventStyles.styl'
 
 angular.module('app')
-  .controller('EventController', function ($log, $scope) {
+  .controller('EventController', function ($log) {
     var vm = this
     vm.test = 'testing'
 
-    $scope.eventDescr=['Event1', 'Event2', 'Event3']
+    vm.eventDescr = ['Event1', 'Event2', 'Event3']
 
     vm.func = () => {
       $log.log('Function was called')
