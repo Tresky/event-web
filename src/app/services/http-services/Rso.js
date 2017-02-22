@@ -1,6 +1,6 @@
 angular.module('app')
-  .factory('Rso', ($q, $http) => {
-    let baseUrl = 'http://localhost:3000/api/rso'
+  .factory('Rso', ($q, $http, ServerUrls, _) => {
+    let baseUrl = ServerUrls.current.nodeApi + 'rso'
 
     let Rso = (initData) => {
       let rso = {}
@@ -16,8 +16,8 @@ angular.module('app')
       findAll (params) {
         return $http.get(baseUrl, params)
           .then((rso) => {
-            return _.map(rso, (i) => { 
-              return new Rso(i) 
+            return _.map(rso, (i) => {
+              return new Rso(i)
             })
           }, (response) => {
             return $q.reject(response)
@@ -44,7 +44,7 @@ angular.module('app')
       },
 
       update (params) {
-        return $http.put(baseUrl + '/' + id, params)
+        return $http.put(baseUrl + '/' + params.id, params)
           .then((rso) => {
             return Rso.new(rso)
           }, (response) => {
@@ -53,7 +53,7 @@ angular.module('app')
       },
 
       destroy (id) {
-        return $http.delete(baseUrl+ '/' + id)
+        return $http.delete(baseUrl + '/' + id)
           .then((rso) => {
             return Rso.new(rso)
           }, (response) => {

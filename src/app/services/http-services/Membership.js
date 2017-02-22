@@ -1,6 +1,6 @@
 angular.module('app')
-  .factory('Membership', ($q, $http) => {
-    let baseUrl = 'http://localhost:3000/api/membership'
+  .factory('Membership', ($q, $http, ServerUrls, _) => {
+    let baseUrl = ServerUrls.current.nodeApi + 'membership'
 
     let Membership = (initData) => {
       let mem = {}
@@ -16,8 +16,8 @@ angular.module('app')
       findAll (params) {
         return $http.get(baseUrl, params)
           .then((mem) => {
-            return _.map(mem, (i) => { 
-              return new Membership(i) 
+            return _.map(mem, (i) => {
+              return new Membership(i)
             })
           }, (response) => {
             return $q.reject(response)
@@ -44,7 +44,7 @@ angular.module('app')
       },
 
       update (params) {
-        return $http.put(baseUrl + '/' + id, params)
+        return $http.put(baseUrl + '/' + params.id, params)
           .then((mem) => {
             return Membership.new(mem)
           }, (response) => {
@@ -53,7 +53,7 @@ angular.module('app')
       },
 
       destroy (id) {
-        return $http.delete(baseUrl+ '/' + id)
+        return $http.delete(baseUrl + '/' + id)
           .then((mem) => {
             return Membership.new(mem)
           }, (response) => {

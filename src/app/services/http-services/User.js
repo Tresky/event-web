@@ -1,6 +1,6 @@
 angular.module('app')
-  .factory('User', ($q, $http) => {
-    let baseUrl = 'http://localhost:3000/api/user'
+  .factory('User', ($q, $http, ServerUrls, _) => {
+    let baseUrl = ServerUrls.current.nodeApi + 'user'
 
     let User = (initData) => {
       let user = {}
@@ -16,8 +16,8 @@ angular.module('app')
       findAll (params) {
         return $http.get(baseUrl, params)
           .then((user) => {
-            return _.map(user, (i) => { 
-              return new User(i) 
+            return _.map(user, (i) => {
+              return new User(i)
             })
           }, (response) => {
             return $q.reject(response)
@@ -44,7 +44,7 @@ angular.module('app')
       },
 
       update (params) {
-        return $http.put(baseUrl + '/' + id, params)
+        return $http.put(baseUrl + '/' + params.id, params)
           .then((user) => {
             return User.new(user)
           }, (response) => {
@@ -53,7 +53,7 @@ angular.module('app')
       },
 
       destroy (id) {
-        return $http.delete(baseUrl+ '/' + id)
+        return $http.delete(baseUrl + '/' + id)
           .then((user) => {
             return User.new(user)
           }, (response) => {
