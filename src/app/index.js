@@ -1,5 +1,6 @@
 import angular from 'angular'
 import uiRouter from 'angular-ui-router'
+import ngMap from 'ngmap'
 import _ from 'lodash'
 
 import './styles/index.styl'
@@ -8,6 +9,7 @@ angular.module('app', [
   // 'angularMoment',
   // 'ngAnimate',
   // 'ui.bootstrap',
+  ngMap,
   uiRouter
   // 'vModal'
 ]).config([

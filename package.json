@@ -22,6 +22,7 @@
     "jquery": "^3.1.1",
     "lodash": "^4.17.4",
     "moment": "^2.17.1",
+    "ngmap": "^1.18.0",
     "ngrequire-webpack-plugin": "^2.0.25",
     "twix": "^1.1.3"
   },
