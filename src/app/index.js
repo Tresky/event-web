@@ -22,12 +22,12 @@ angular.module('app', [
     // Allow the use of HTML5 state modes
     $locationProvider.html5Mode(true)
 
-    let loginRequired = ['$q', '$location', '$auth', ($q, $location, $auth) => {
+    let loginRequired = ['$q', '$state', '$auth', ($q, $state, $auth) => {
       let deferred = $q.defer()
       if ($auth.isAuthenticated()) {
         deferred.resolve()
       } else {
-        $location.path('/login')
+        $state.go('login')
       }
       return deferred.promise
     }]
