@@ -73,7 +73,7 @@ angular.module('app', [
         })
 
       // If no states were matched, redirect to home
-      $urlRouterProvider.otherwise('enter')
+      $urlRouterProvider.otherwise('home')
 
       let $window = $windowProvider.$get()
 
