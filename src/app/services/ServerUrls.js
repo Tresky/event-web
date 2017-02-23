@@ -10,7 +10,6 @@
 
 angular.module('app')
   .factory('ServerUrls', ['$log', '$location', '_', ($log, $location, _) => {
-    $log.log('tyler')
     var baseLocalUrl = 'http://localhost'
     var ServerUrls = {}
 
