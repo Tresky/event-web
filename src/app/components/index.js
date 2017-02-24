@@ -1,3 +1,4 @@
+import './dashboard/dashboardController.js'
 import './event/eventController.js'
 import './home/homeController.js'
 import './login/loginController.js'
