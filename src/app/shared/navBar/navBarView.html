@@ -24,7 +24,8 @@
                     <a href="/login">Register University</a>
                 </li>
                 <li>
-                    <a href="/login">Sign in</a>
+                    <a href="/logout" ng-if="navbarCtrl.isAuthenticated()">Logout</a>
+                    <a href="/login" ng-if="!navbarCtrl.isAuthenticated()">Login</a>
                 </li>
             </ul>
         </div>
