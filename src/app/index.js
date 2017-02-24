@@ -1,4 +1,6 @@
 import angular from 'angular'
+import angularCookies from 'angular-cookie'
+import satellizer from 'satellizer'
 import uiRouter from 'angular-ui-router'
 import * as _ from 'lodash'
 
@@ -8,6 +10,8 @@ angular.module('app', [
   // 'angularMoment',
   // 'ngAnimate',
   // 'ui.bootstrap',
+  angularCookies,
+  satellizer,
   uiRouter
   // 'vModal'
 ]).constant('_', _)
