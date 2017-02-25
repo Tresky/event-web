@@ -1,3 +1,4 @@
+import './event/directives/index.js'
 import './dashboard/dashboardController.js'
 import './event/eventController.js'
 import './home/homeController.js'

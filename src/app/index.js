@@ -2,6 +2,8 @@ import angular from 'angular'
 import angularCookies from 'angular-cookie'
 import satellizer from 'satellizer'
 import uiRouter from 'angular-ui-router'
+import ngMap from 'ngmap'
+
 import * as _ from 'lodash'
 
 import './styles/index.styl'
@@ -10,6 +12,7 @@ angular.module('app', [
   // 'angularMoment',
   // 'ngAnimate',
   // 'ui.bootstrap',
+  ngMap,
   angularCookies,
   satellizer,
   uiRouter
