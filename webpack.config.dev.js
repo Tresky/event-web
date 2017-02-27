@@ -9,7 +9,7 @@ var PORT = process.env.PORT || 5000;
 
 module.exports = {
   entry: [
-    // 'webpack/hot/dev-server',
+    'webpack/hot/dev-server',
     './src/app/index.js'
   ],
   // resolve: ['', '.js', '.css', '.styl', '.html'],
