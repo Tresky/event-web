@@ -1,9 +1,9 @@
 /**
- * File: LoginController.js
+ * File: RegisterController.js
  * Type: ngController
  * Author: Tyler Gauntlett
  * Description: This controller is specific to the
- * login page of the application.
+ * register page of the application.
  */
 
 import './registerStyles.styl'

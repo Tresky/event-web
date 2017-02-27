@@ -41,13 +41,13 @@ angular.module('app', [
         url: '/register',
         template: require('./components/register/registerView.html'),
         controller: 'RegisterController',
-        controllerAs: 'vm'
+        controllerAs: 'registerCtrl'
       })
       .state('universityRegister', {
         url: '/university-register',
         template: require('./components/universityRegister/universityRegisterView.html'),
         controller: 'UniversityRegisterController',
-        controllerAs: 'vm'
+        controllerAs: 'univRegisterCtrl'
       })
 
     // If no states were matched, redirect to home
