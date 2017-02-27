@@ -23,25 +23,25 @@ angular.module('app', [
         url: '/',
         template: require('./components/home/homeView.html'),
         controller: 'HomeController',
-        controllerAs: 'vm'
+        controllerAs: 'homeCtrl'
       })
       .state('login', {
         url: '/login',
         template: require('./components/login/loginView.html'),
         controller: 'LoginController',
-        controllerAs: 'vm'
+        controllerAs: 'loginCtrl'
       })
       .state('event', {
         url: '/event',
         template: require('./components/event/eventView.html'),
         controller: 'EventController',
-        controllerAs: 'vm'
+        controllerAs: 'eventCtrl'
       })
       .state('university', {
         url: '/university',
         template: require('./components/university/universityView.html'),
         controller: 'UniversityController',
-        controllerAs: 'vm'
+        controllerAs: 'univCtrl'
       })
 
     // If no states were matched, redirect to home
