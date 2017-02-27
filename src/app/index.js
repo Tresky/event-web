@@ -17,6 +17,7 @@ angular.module('app', [
   satellizer,
   uiRouter
   // 'vModal'
+
 ]).constant('_', _)
   .config([
     '$stateProvider',
@@ -70,6 +71,24 @@ angular.module('app', [
               $state.go('dashboard')
             }
           }]
+        })
+        .state('event', {
+          url: '/event',
+          template: require('./components/event/eventView.html'),
+          controller: 'EventController',
+          controllerAs: 'eventCtrl',
+          resolve: {
+            loginRequired: loginRequired
+          }
+        })
+        .state('university', {
+          url: '/university',
+          template: require('./components/university/universityView.html'),
+          controller: 'UniversityController',
+          controllerAs: 'univCtrl',
+          resolve: {
+            loginRequired: loginRequired
+          }
         })
         .state('logout', {
           url: '/logout',
