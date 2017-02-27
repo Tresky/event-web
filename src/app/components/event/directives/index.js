@@ -1,0 +1,5 @@
+import './eventChat/eventChatDirective.js'
+import './eventDetail/eventDetailDirective.js'
+import './eventOverview/eventOverviewDirective.js'
+import './eventRating/eventRatingDirective.js'
+import './eventReview/eventReviewDirective.js'

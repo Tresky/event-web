@@ -1,64 +1,17 @@
 <div class="container-fluid">
     <div class="row top-buffer">
-        <div class="col-md-4 col-md-offset-1">
+        <div class="col-md-5 col-md-offset-1">
             <div class="row">
                 <div class="col-md-12">
-                    <img src="http://placehold.it/800x500" class="img-responsive" alt="Responsive image">
+                    <div ng-map center="[40.74, -74.18]"></div>
                 </div>
                 <div class="col-md-12 top-buffer">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="text-center">Details:</h3>
-                        </div>
-                        <div class="panel-body">
-                            <div class="col-md-12">
-                                <i class="fa fa-calendar" aria-hidden="true"></i> Date: {date}
-                            </div>
-                            <div class="col-md-12">
-                                <i class="fa fa-clock-o" aria-hidden="true"></i> Time: {time}
-                            </div>
-                            <div class="col-md-12">
-                                <i class="fa fa-phone" aria-hidden="true"></i> Phone: {phone}
-                            </div>
-                            <div class="col-md-12">
-                                <i class="fa fa-envelope-o" aria-hidden="true"></i> Email: {email}
-                            </div>
-                        </div>
-                        <div class="panel-footer">
-
-                        </div>
-                    </div>
+                    <div event-detail date="1/1/2018" time="13:37" phone="407-GOT-ROOT" email="root@localhost"></div>
                 </div>
             </div>
         </div>
         <div class="col-md-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h2 class="text-center">{event_name}</h2>
-                    <h4 class="text-center">{univeristy_name}</h4>
-                </div>
-                <div class="panel-body">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="text-center">Event Description:</h3>
-                        </div>
-                        <div class="panel-body">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae
-                                ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla
-                                augue.</p>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae
-                                ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla
-                                augue.</p>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae
-                                ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla
-                                augue.</p>
-                        </div>
-                        <div class="panel-footer">
-
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div event-overview name="Test" uni="UCF" descr="vm.eventDescr"></div>
         </div>
     </div>
     <!-- /.row -->
@@ -72,224 +25,11 @@
     <!-- /.row -->
     <div class="row top-buffer">
         <div class="col-md-7 col-md-offset-1">
-            <div class="chat-panel panel panel-default">
-                <div class="panel-heading">
-                    <i class="fa fa-comments fa-fw"></i> Comments
-                </div>
-                <!-- /.panel-heading -->
-                <div class="panel-body">
-                    <ul class="chat">
-                        <li class="left clearfix">
-                                        <span class="chat-img pull-left">
-                                        <img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar"
-                                             class="img-circle"/>
-                                    </span>
-                            <div class="chat-body clearfix">
-                                <div class="header">
-                                    <strong class="primary-font">Jack Sparrow</strong>
-                                    <small class="pull-right text-muted">
-                                        <i class="fa fa-clock-o fa-fw"></i> 12 mins ago
-                                    </small>
-                                </div>
-                                <div class="col-md-12">
-                                    Comment:
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum
-                                        ornare dolor, quis ullamcorper ligula sodales.
-                                    </p>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="left clearfix">
-                                        <span class="chat-img pull-left">
-                                        <img src="http://placehold.it/50/FF3232/fff" alt="User Avatar"
-                                             class="img-circle"/>
-                                    </span>
-                            <div class="chat-body clearfix">
-                                <div class="header">
-                                    <strong class="primary-font">Bhaumik Patel</strong>
-                                    <small class="pull-right text-muted">
-                                        <i class="fa fa-clock-o fa-fw"></i> 14 mins ago
-                                    </small>
-                                </div>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
-                                    dolor, quis ullamcorper ligula sodales.
-                                </p>
-                            </div>
-                        </li>
-                        <li class="left clearfix">
-                                        <span class="chat-img pull-left">
-                                        <img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar"
-                                             class="img-circle"/>
-                                    </span>
-                            <div class="chat-body clearfix">
-                                <div class="header">
-                                    <strong class="primary-font">Jack Sparrow</strong>
-                                    <small class="pull-right text-muted">
-                                        <i class="fa fa-clock-o fa-fw"></i> 12 mins ago
-                                    </small>
-                                </div>
-                                <div class="col-md-12">
-                                    Comment:
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum
-                                        ornare dolor, quis ullamcorper ligula sodales.
-                                    </p>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="left clearfix">
-                                        <span class="chat-img pull-left">
-                                        <img src="http://placehold.it/50/FF3232/fff" alt="User Avatar"
-                                             class="img-circle"/>
-                                    </span>
-                            <div class="chat-body clearfix">
-                                <div class="header">
-                                    <strong class="primary-font">Bhaumik Patel</strong>
-                                    <small class="pull-right text-muted">
-                                        <i class="fa fa-clock-o fa-fw"></i> 14 mins ago
-                                    </small>
-                                </div>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
-                                    dolor, quis ullamcorper ligula sodales.
-                                </p>
-                            </div>
-                        </li>
-                        <li class="left clearfix">
-                                        <span class="chat-img pull-left">
-                                        <img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar"
-                                             class="img-circle"/>
-                                    </span>
-                            <div class="chat-body clearfix">
-                                <div class="header">
-                                    <strong class="primary-font">Jack Sparrow</strong>
-                                    <small class="pull-right text-muted">
-                                        <i class="fa fa-clock-o fa-fw"></i> 12 mins ago
-                                    </small>
-                                </div>
-                                <div class="col-md-12">
-                                    Comment:
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum
-                                        ornare dolor, quis ullamcorper ligula sodales.
-                                    </p>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="left clearfix">
-                                        <span class="chat-img pull-left">
-                                        <img src="http://placehold.it/50/FF3232/fff" alt="User Avatar"
-                                             class="img-circle"/>
-                                    </span>
-                            <div class="chat-body clearfix">
-                                <div class="header">
-                                    <strong class="primary-font">Bhaumik Patel</strong>
-                                    <small class="pull-right text-muted">
-                                        <i class="fa fa-clock-o fa-fw"></i> 14 mins ago
-                                    </small>
-                                </div>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
-                                    dolor, quis ullamcorper ligula sodales.
-                                </p>
-                            </div>
-                        </li>
-                        <li class="left clearfix">
-                                        <span class="chat-img pull-left">
-                                        <img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar"
-                                             class="img-circle"/>
-                                    </span>
-                            <div class="chat-body clearfix">
-                                <div class="header">
-                                    <strong class="primary-font">Jack Sparrow</strong>
-                                    <small class="pull-right text-muted">
-                                        <i class="fa fa-clock-o fa-fw"></i> 12 mins ago
-                                    </small>
-                                </div>
-                                <div class="col-md-12">
-                                    Comment:
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum
-                                        ornare dolor, quis ullamcorper ligula sodales.
-                                    </p>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="left clearfix">
-                                        <span class="chat-img pull-left">
-                                        <img src="http://placehold.it/50/FF3232/fff" alt="User Avatar"
-                                             class="img-circle"/>
-                                    </span>
-                            <div class="chat-body clearfix">
-                                <div class="header">
-                                    <strong class="primary-font">Bhaumik Patel</strong>
-                                    <small class="pull-right text-muted">
-                                        <i class="fa fa-clock-o fa-fw"></i> 14 mins ago
-                                    </small>
-                                </div>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
-                                    dolor, quis ullamcorper ligula sodales.
-                                </p>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <!-- /.panel-body -->
-                <div class="panel-footer">
-                    <div class="input-group">
-                        <input id="btn-input" type="text" class="form-control input-sm"
-                               placeholder="Type your message here..."/>
-                        <span class="input-group-btn">
-                                    <button class="btn btn-warning btn-sm" id="btn-chat">
-                                        Send
-                                    </button>
-                                </span>
-                    </div>
-                </div>
-                <!-- /.panel-footer -->
-            </div>
+            <div event-chat></div>
         </div>
         <div class="col-md-3">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="text-center">Average Ratings:</h3>
-                </div>
-                <div class="panel-body">
-                    <div class="col-md-12">
-                        <h3><i class="fa fa-google" aria-hidden="true"></i> Google Rating: <span
-                                class="text-danger">4.1</span></h3>
-                    </div>
-                    <div class="col-md-12">
-                        <h3><i class="fa fa-star" aria-hidden="true"></i> Local Rating: <span
-                                class="text-danger">3.7</span></h3>
-                    </div>
-                </div>
-                <div class="panel-footer">
-                </div>
-            </div>
-
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="text-center">Submit A Review:</h4>
-                </div>
-                <div class="panel-body">
-                    <div class="col-md-12">
-                        <div class="rating text-center">
-                            <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <button class="btn btn-primary btn-sm pull-right">
-                            Submit
-                        </button>
-                    </div>
-                </div>
-                <div class="panel-footer">
-                </div>
-            </div>
+            <div event-rating google="0.1" local="0.5"></div>
+            <div event-review></div>
         </div>
     </div>
 </div>

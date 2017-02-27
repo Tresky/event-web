@@ -1,5 +1,10 @@
 import angular from 'angular'
+import angularCookies from 'angular-cookie'
+import satellizer from 'satellizer'
 import uiRouter from 'angular-ui-router'
+import ngMap from 'ngmap'
+
+import * as _ from 'lodash'
 
 import './styles/index.styl'
 
@@ -7,52 +12,119 @@ angular.module('app', [
   // 'angularMoment',
   // 'ngAnimate',
   // 'ui.bootstrap',
+  ngMap,
+  angularCookies,
+  satellizer,
   uiRouter
   // 'vModal'
-]).config([
-  '$stateProvider',
-  '$urlRouterProvider',
-  '$locationProvider',
-  ($stateProvider, $urlRouterProvider, $locationProvider) => {
-    // Allow the use of HTML5 state modes
-    $locationProvider.html5Mode(true)
 
-    // Define all of the application states
-    $stateProvider
-      .state('home', {
-        url: '/',
-        template: require('./components/home/homeView.html'),
-        controller: 'HomeController',
-        controllerAs: 'vm'
-      })
-      .state('login', {
-        url: '/login',
-        template: require('./components/login/loginView.html'),
-        controller: 'LoginController',
-        controllerAs: 'vm'
-      })
-      .state('event', {
-        url: '/event',
-        template: require('./components/event/eventView.html'),
-        controller: 'EventController',
-        controllerAs: 'vm'
-      })
-      .state('register', {
-        url: '/register',
-        template: require('./components/register/registerView.html'),
-        controller: 'RegisterController',
-        controllerAs: 'registerCtrl'
-      })
-      .state('universityRegister', {
-        url: '/university-register',
-        template: require('./components/universityRegister/universityRegisterView.html'),
-        controller: 'UniversityRegisterController',
-        controllerAs: 'univRegisterCtrl'
-      })
+]).constant('_', _)
+  .config([
+    '$stateProvider',
+    '$urlRouterProvider',
+    '$locationProvider',
+    '$authProvider',
+    '$windowProvider',
+    ($stateProvider, $urlRouterProvider, $locationProvider, $authProvider, $windowProvider) => {
+      // Allow the use of HTML5 state modes
+      $locationProvider.html5Mode(true)
 
-    // If no states were matched, redirect to home
-    $urlRouterProvider.otherwise('home')
-  }])
+      let loginRequired = ['$q', '$location', '$auth', ($q, $location, $auth) => {
+        let deferred = $q.defer()
+        if ($auth.isAuthenticated()) {
+          deferred.resolve()
+        } else {
+          $location.path('/login')
+        }
+        return deferred.promise
+      }]
+
+      // Define all of the application states
+      $stateProvider
+        .state('home', {
+          url: '/',
+          template: require('./components/home/homeView.html'),
+          controller: 'HomeController',
+          controllerAs: 'homeCtrl',
+          onEnter: ['$state', '$auth', ($state, $auth) => {
+            if ($auth.isAuthenticated()) {
+              $state.go('dashboard')
+            }
+          }]
+        })
+        .state('dashboard', {
+          url: '/dashboard',
+          template: require('./components/dashboard/dashboardView.html'),
+          controller: 'DashboardController',
+          controllerAs: 'dashCtrl',
+          resolve: {
+            loginRequired: loginRequired
+          }
+        })
+        .state('login', {
+          url: '/login',
+          template: require('./components/login/loginView.html'),
+          controller: 'LoginController',
+          controllerAs: 'loginCtrl',
+          onEnter: ['$state', '$auth', ($state, $auth) => {
+            if ($auth.isAuthenticated()) {
+              $state.go('dashboard')
+            }
+          }]
+        })
+        .state('event', {
+          url: '/event',
+          template: require('./components/event/eventView.html'),
+          controller: 'EventController',
+          controllerAs: 'eventCtrl',
+          resolve: {
+            loginRequired: loginRequired
+          }
+        })
+        .state('university', {
+          url: '/university',
+          template: require('./components/university/universityView.html'),
+          controller: 'UniversityController',
+          controllerAs: 'univCtrl',
+          resolve: {
+            loginRequired: loginRequired
+          }
+        })
+        .state('register', {
+          url: '/register',
+          template: require('./components/register/registerView.html'),
+          controller: 'RegisterController',
+          controllerAs: 'registerCtrl'
+        })
+        .state('universityRegister', {
+          url: '/university-register',
+          template: require('./components/universityRegister/universityRegisterView.html'),
+          controller: 'UniversityRegisterController',
+          controllerAs: 'univRegisterCtrl'
+         })
+        .state('logout', {
+          url: '/logout',
+          onEnter: ['$state', '$auth', ($state, $auth) => {
+            $auth.logout()
+            $state.go('login')
+          }]
+        })
+
+      // If no states were matched, redirect to home
+      $urlRouterProvider.otherwise('home')
+
+      let $window = $windowProvider.$get()
+
+      // There isn't a better way to set this value more dynamically
+      // due to contraints provided by the Satellizer package and Angular.
+      let localUrls = ['localhost', '127.0.0.1', '192.168']
+      if (_.includes(localUrls, $window.location.hostname)) {
+        $authProvider.baseUrl = 'http://localhost:3000/api'
+      } else {
+        $authProvider.baseUrl = '/'
+      }
+      $authProvider.loginUrl = '/auth/login'
+    }])
 
 require('./services/index.js')
 require('./components/index.js')
