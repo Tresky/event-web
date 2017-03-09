@@ -90,6 +90,18 @@ angular.module('app', [
             loginRequired: loginRequired
           }
         })
+        .state('register', {
+          url: '/register',
+          template: require('./components/register/registerView.html'),
+          controller: 'RegisterController',
+          controllerAs: 'registerCtrl'
+        })
+        .state('universityRegister', {
+          url: '/university-register',
+          template: require('./components/universityRegister/universityRegisterView.html'),
+          controller: 'UniversityRegisterController',
+          controllerAs: 'univRegisterCtrl'
+         })
         .state('logout', {
           url: '/logout',
           onEnter: ['$state', '$auth', ($state, $auth) => {
