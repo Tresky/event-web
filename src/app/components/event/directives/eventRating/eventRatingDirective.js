@@ -4,7 +4,6 @@ angular.module('app')
       template: require('./eventRatingView.html'),
       restrict: 'A',
       scope: {
-        google: '@',
         local: '@'
       }
     }
