@@ -16,7 +16,7 @@ angular.module('app')
       findAll (params) {
         return $http.get(baseUrl, params)
           .then((rso) => {
-            return _.map(rso, (i) => {
+            return _.map(rso.data, (i) => {
               return new Rso(i)
             })
           }, (response) => {
@@ -27,7 +27,7 @@ angular.module('app')
       findById (id) {
         return $http.get(baseUrl + '/' + id)
           .then((rso) => {
-            return Rso.new(rso)
+            return new Rso(rso.data)
           }, (response) => {
             return $q.reject(response)
           })
@@ -37,7 +37,7 @@ angular.module('app')
       create (data) {
         return $http.post(baseUrl, data)
           .then((rso) => {
-            return Rso.new(rso)
+            return new Rso(rso.data)
           }, (response) => {
             return $q.reject(response)
           })
@@ -46,7 +46,7 @@ angular.module('app')
       update (params) {
         return $http.put(baseUrl + '/' + params.id, params)
           .then((rso) => {
-            return Rso.new(rso)
+            return new Rso(rso.data)
           }, (response) => {
             return $q.reject(response)
           })
@@ -55,7 +55,7 @@ angular.module('app')
       destroy (id) {
         return $http.delete(baseUrl + '/' + id)
           .then((rso) => {
-            return Rso.new(rso)
+            return new Rso(rso.data)
           }, (response) => {
             return $q.reject(response)
           })
