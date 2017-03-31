@@ -16,7 +16,7 @@ angular.module('app')
       findAll (params) {
         return $http.get(baseUrl, params)
           .then((mem) => {
-            return _.map(mem, (i) => {
+            return _.map(mem.data, (i) => {
               return new Membership(i)
             })
           }, (response) => {
@@ -27,7 +27,7 @@ angular.module('app')
       findById (id) {
         return $http.get(baseUrl + '/' + id)
           .then((mem) => {
-            return Membership.new(mem)
+            return new Membership(mem.data)
           }, (response) => {
             return $q.reject(response)
           })
@@ -37,7 +37,7 @@ angular.module('app')
       create (data) {
         return $http.post(baseUrl, data)
           .then((mem) => {
-            return Membership.new(mem)
+            return new Membership(mem.data)
           }, (response) => {
             return $q.reject(response)
           })
@@ -46,7 +46,7 @@ angular.module('app')
       update (params) {
         return $http.put(baseUrl + '/' + params.id, params)
           .then((mem) => {
-            return Membership.new(mem)
+            return new Membership(mem.data)
           }, (response) => {
             return $q.reject(response)
           })
@@ -55,7 +55,7 @@ angular.module('app')
       destroy (id) {
         return $http.delete(baseUrl + '/' + id)
           .then((mem) => {
-            return Membership.new(mem)
+            return new Membership(mem.data)
           }, (response) => {
             return $q.reject(response)
           })

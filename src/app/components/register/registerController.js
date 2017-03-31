@@ -9,11 +9,37 @@
 import './registerStyles.styl'
 
 angular.module('app')
-  .controller('RegisterController', function ($log) {
+  .controller('RegisterController', function ($log, $timeout, $auth, $location, Auth, University) {
     var vm = this
-    vm.test = 'testing'
-    vm.func = () => {
-      $log.log('Function was called')
+
+    //Log the user out
+    $auth.logout()
+
+    //get universities list
+    University.findAll()
+      .then((uni) => {
+        $log.log(uni)
+        vm.universities = uni
+      })
+
+    //sign up call
+    vm.submit = () => {
+      Auth.signup(vm.signupData)
+        .then((response) => {
+          $log.log('Success', response)
+
+          //set the token
+          $auth.setToken(response.token)
+
+          //redirect to dash
+          $timeout(() => {
+            $location.path('/dashboard')
+          })
+        }, (response) => {
+          $log.log('Failure', response)
+        })
     }
   }
 )
+
+//registerCtrl
