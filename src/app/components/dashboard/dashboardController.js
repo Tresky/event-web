@@ -12,9 +12,38 @@
 import './dashboardStyles.styl'
 
 angular.module('app')
-  .controller('DashboardController', function ($log) {
+  .controller('DashboardController', function ($log, Rso) {
     let vm = this
 
+    vm.rsoFeed = [{event: "Face Painting 1", rso: "SGA", date: "10/20/2017", university: "University of Central Florida", proximity: "0 MI"},
+                  {event: "Face Painting 2", rso: "SGA", date: "10/20/2017", university: "University of Central Florida", proximity: "0 MI"},
+                  {event: "Face Painting 3", rso: "SGA", date: "10/20/2017", university: "University of Central Florida", proximity: "0 MI"}]
+
     $log.log('DashboardController')
+
+    vm.requestRso = () => {
+      vm.rsoData.memberEmails = []
+      vm.rsoData.memberEmails.push(vm.rsoEmail1)
+      vm.rsoData.memberEmails.push(vm.rsoEmail2)
+      vm.rsoData.memberEmails.push(vm.rsoEmail3)
+      vm.rsoData.memberEmails.push(vm.rsoEmail4)
+      vm.rsoData.memberEmails.push(vm.rsoEmail5)
+
+      $log.log('requestRso was called')
+      $log.log('Data: ', vm.rsoData)
+
+      //TODO: Change hardcoded value to dropdown box
+      Rso.create(1,vm.rsoData)
+        .then((response) => {
+          $log.log('Success', response)
+        }, (response) => {
+          $log.log('Failure', response)
+        })
+    }
+
+    vm.createEvent = () => {
+      $log.log('createEvent was called')
+      $log.log('Data: ', vm.eventData)
+    }
   }
 )

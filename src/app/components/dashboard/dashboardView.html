@@ -18,86 +18,26 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-              <td>Face Painting</td>
-              <td>SGA</td>
-              <td>10/20/2017</td>
-              <td>University of Central Florida</td>
-              <td>34.1 MI</td>
-              <td>
-                <div class="btn-group-vertical">
-                  <button class="btn btn-success">
-                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit
-                  </button>
-                  <button class="btn btn-primary">
-                    <i class="fa fa-eye" aria-hidden="true"></i> View
-                  </button>
-                  <button class="btn btn-danger">
-                    <i class="fa fa-close" aria-hidden="true"></i> Leave
-                  </button>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td>Face Painting</td>
-              <td>SGA</td>
-              <td>10/20/2017</td>
-              <td>University of Central Florida</td>
-              <td>34.1 MI</td>
-              <td>
-                <div class="btn-group-vertical">
-                  <button class="btn btn-success">
-                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit
-                  </button>
-                  <button class="btn btn-primary">
-                    <i class="fa fa-eye" aria-hidden="true"></i> View
-                  </button>
-                  <button class="btn btn-danger">
-                    <i class="fa fa-close" aria-hidden="true"></i> Leave
-                  </button>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td>Face Painting</td>
-              <td>SGA</td>
-              <td>10/20/2017</td>
-              <td>University of Central Florida</td>
-              <td>34.1 MI</td>
-              <td>
-                <div class="btn-group-vertical">
-                  <button class="btn btn-success">
-                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit
-                  </button>
-                  <button class="btn btn-primary">
-                    <i class="fa fa-eye" aria-hidden="true"></i> View
-                  </button>
-                  <button class="btn btn-danger">
-                    <i class="fa fa-close" aria-hidden="true"></i> Leave
-                  </button>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td>Face Painting</td>
-              <td>SGA</td>
-              <td>10/20/2017</td>
-              <td>University of Central Florida</td>
-              <td>34.1 MI</td>
-              <td>
-                <div class="btn-group-vertical">
-                  <button class="btn btn-success">
-                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit
-                  </button>
-                  <button class="btn btn-primary">
-                    <i class="fa fa-eye" aria-hidden="true"></i> View
-                  </button>
-                  <button class="btn btn-danger">
-                    <i class="fa fa-close" aria-hidden="true"></i> Leave
-                  </button>
-                </div>
-              </td>
-            </tr>
+              <tr ng-repeat="feed in dashCtrl.rsoFeed">
+                <td>{{ feed.event }}</td>
+                <td>{{ feed.rso }}</td>
+                <td>{{ feed.date }}</td>
+                <td>{{ feed.university }}</td>
+                <td>{{ feed.proximity }}</td>
+                <td>
+                  <div class="btn-group-vertical">
+                    <button class="btn btn-success">
+                      <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit
+                    </button>
+                    <button class="btn btn-primary">
+                      <i class="fa fa-eye" aria-hidden="true"></i> View
+                    </button>
+                    <button class="btn btn-danger">
+                      <i class="fa fa-close" aria-hidden="true"></i> Leave
+                    </button>
+                  </div>
+                </td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -118,48 +58,47 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="rso-name">RSO Name:</label>
-                  <input type="text" class="form-control" id="rso-name">
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label for="rso-lead-email">RSO Leader Email:</label>
-                  <input type="text" class="form-control" id="rso-lead-email"
-                         value="theUsersEmail@me.com" ng-disabled="true">
+                  <input type="text" class="form-control" id="rso-name" ng-model="dashCtrl.rsoData.name">
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="rso-email-1">Member #1 Email:</label>
-                  <input type="text" class="form-control" id="rso-email-1">
+                  <input type="text" class="form-control" id="rso-email-1" ng-model="dashCtrl.rsoEmail1">
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="rso-email-2">Member #2 Email:</label>
-                  <input type="text" class="form-control" id="rso-email-2">
+                  <input type="text" class="form-control" id="rso-email-2" ng-model="dashCtrl.rsoEmail2">
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="rso-email-3">Member #3 Email:</label>
-                  <input type="text" class="form-control" id="rso-email-3">
+                  <input type="text" class="form-control" id="rso-email-3" ng-model="dashCtrl.rsoEmail3">
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="rso-email-4">Member #4 Email:</label>
-                  <input type="text" class="form-control" id="rso-email-4">
+                  <input type="text" class="form-control" id="rso-email-4" ng-model="dashCtrl.rsoEmail4">
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="rso-email-4">Member #5 Email:</label>
-                  <input type="text" class="form-control" id="rso-email-5">
+                  <input type="text" class="form-control" id="rso-email-5" ng-model="dashCtrl.rsoEmail5">
                 </div>
               </div>
               <div class="col-md-12">
-                <button class="btn btn-success pull-right">
+                <div class="form-group">
+                  <label for="description">Description:</label>
+                  <textarea class="form-control" rows="5" id="rso-description" ng-model="dashCtrl.rsoData.description"></textarea>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <button class="btn btn-success pull-right" ng-click="dashCtrl.requestRso()">
                   Request RSO
                 </button>
               </div>
@@ -179,83 +118,83 @@
           <div class="col-md-6">
             <div class="form-group">
               <label for="owned-rsos">RSO:</label>
-              <select id="owned-rsos" class="form-control"></select>
+              <select id="owned-rsos" class="form-control" ng-model="dashCtrl.eventData.rso"></select>
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
               <label for="event-name">Name:</label>
-              <input type="text" class="form-control" id="event-name">
+              <input type="text" class="form-control" id="event-name" ng-model="dashCtrl.eventData.name">
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
               <label for="event-type">Type:</label>
-              <select id="event-type" class="form-control"></select>
+              <select id="event-type" class="form-control" ng-model="dashCtrl.eventData.type"></select>
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
               <label for="event-category">Category:</label>
-              <select id="event-category" class="form-control"></select>
+              <select id="event-category" class="form-control" ng-model="dashCtrl.eventData.category"></select>
             </div>
           </div>
           <div class="col-md-12">
             <div class="form-group">
               <label for="description">Description:</label>
-              <textarea class="form-control" rows="5" id="description"></textarea>
+              <textarea class="form-control" rows="5" id="description" ng-model="dashCtrl.eventData.description"></textarea>
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
               <label for="event-date">Date:</label>
-              <input id="event-date" class="form-control">
+              <input id="event-date" class="form-control" ng-model="dashCtrl.eventData.date">
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
               <label for="event-time">Time:</label>
-              <input id="event-time" class="form-control">
+              <input id="event-time" class="form-control" ng-model="dashCtrl.eventData.time">
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
               <label for="event-phone">Phone:</label>
-              <input id="event-phone" class="form-control">
+              <input id="event-phone" class="form-control" ng-model="dashCtrl.eventData.phone">
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
               <label for="event-email">Email:</label>
-              <input id="event-email" class="form-control">
+              <input id="event-email" class="form-control" ng-model="dashCtrl.eventData.email">
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
               <label for="event-privacy">Privacy:</label>
-              <select id="event-privacy" class="form-control"></select>
+              <select id="event-privacy" class="form-control" ng-model="dashCtrl.eventData.privacy"></select>
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
               <label for="event-location-name">Location Name:</label>
-              <input id="event-location-name" class="form-control">
+              <input id="event-location-name" class="form-control" ng-model="dashCtrl.eventData.locationName">
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
               <label for="event-location-lat">Location Latitude:</label>
-              <input id="event-location-lat" class="form-control">
+              <input id="event-location-lat" class="form-control" ng-model="dashCtrl.eventData.locationLat">
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
               <label for="event-location-long">Location Longitude:</label>
-              <input id="event-location-long" class="form-control">
+              <input id="event-location-long" class="form-control" ng-model="dashCtrl.eventData.locationLon">
             </div>
           </div>
           <div class="col-md-12">
-            <button class="btn btn-success pull-right">
+            <button class="btn btn-success pull-right" ng-click="dashCtrl.createEvent()">
               Create Event
             </button>
           </div>
