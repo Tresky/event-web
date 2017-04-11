@@ -8,20 +8,20 @@
                     </div>
                     <div class="panel-body">
                         <div class="col-md-12">
-                            <i class="fa fa-info" aria-hidden="true"></i> Name: {name}
+                            <i class="fa fa-info" aria-hidden="true"></i> Name: {{rsoCtrl.rsoData.name}}
                         </div>
                         <div class="col-md-12">
-                            <i class="fa fa-align-left" aria-hidden="true"></i> Description: {description}
+                            <i class="fa fa-align-left" aria-hidden="true"></i> Description: {{rsoCtrl.rsoData.description}}
                         </div>
                         <div class="col-md-12">
-                            <i class="fa fa-graduation-cap" aria-hidden="true"></i> University: {university_name}
+                            <i class="fa fa-graduation-cap" aria-hidden="true"></i> University: {{rsoCtrl.rsoData.university_name}}
                         </div>
                         <div class="col-md-12">
-                            <i class="fa fa-user-secret" aria-hidden="true"></i> Privacy Level: {privacy_level}
+                            <i class="fa fa-user-secret" aria-hidden="true"></i> Privacy Level: {{rsoCtrl.rsoData.privacy_level}}
                         </div>
                     </div>
                     <div class="panel-footer">
-                        <button class="btn btn-lg btn-success">Subscribe</button>
+                        <button class="btn btn-lg btn-success" ng-click="rsoCtrl.subscribe()">Subscribe</button>
                     </div>
                 </div>
             </div>
@@ -35,7 +35,7 @@
             <!-- /.panel-heading -->
             <div class="panel-body">
                 <ul class="list">
-                    <li class="left clearfix">
+                    <li class="left clearfix" ng-repeat='event in rsoCtrl.eventData'>
                         <div class="row">
                             <div class="col-md-2">
                                 <div class="btn-group-vertical">
@@ -45,105 +45,7 @@
                                 </div>
                             </div>
                             <div class="col-md-9">
-                                <h3 class="center">{event_name}</h3>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="left clearfix">
-                        <div class="row">
-                            <div class="col-md-2">
-                                <div class="btn-group-vertical">
-                                    <button class="btn btn-info">Details
-                                        <i class="fa fa-eye" aria-hidden="true"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="col-md-9">
-                                <h3 class="center">{event_name}</h3>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="left clearfix">
-                        <div class="row">
-                            <div class="col-md-2">
-                                <div class="btn-group-vertical">
-                                    <button class="btn btn-info">Details
-                                        <i class="fa fa-eye" aria-hidden="true"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="col-md-9">
-                                <h3 class="center">{event_name}</h3>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="left clearfix">
-                        <div class="row">
-                            <div class="col-md-2">
-                                <div class="btn-group-vertical">
-                                    <button class="btn btn-info">Details
-                                        <i class="fa fa-eye" aria-hidden="true"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="col-md-9">
-                                <h3 class="center">{event_name}</h3>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="left clearfix">
-                        <div class="row">
-                            <div class="col-md-2">
-                                <div class="btn-group-vertical">
-                                    <button class="btn btn-info">Details
-                                        <i class="fa fa-eye" aria-hidden="true"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="col-md-9">
-                                <h3 class="center">{event_name}</h3>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="left clearfix">
-                        <div class="row">
-                            <div class="col-md-2">
-                                <div class="btn-group-vertical">
-                                    <button class="btn btn-info">Details
-                                        <i class="fa fa-eye" aria-hidden="true"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="col-md-9">
-                                <h3 class="center">{event_name}</h3>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="left clearfix">
-                        <div class="row">
-                            <div class="col-md-2">
-                                <div class="btn-group-vertical">
-                                    <button class="btn btn-info">Details
-                                        <i class="fa fa-eye" aria-hidden="true"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="col-md-9">
-                                <h3 class="center">{event_name}</h3>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="left clearfix">
-                        <div class="row">
-                            <div class="col-md-2">
-                                <div class="btn-group-vertical">
-                                    <button class="btn btn-info">Details
-                                        <i class="fa fa-eye" aria-hidden="true"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="col-md-9">
-                                <h3 class="center">{event_name}</h3>
+                                <h3 class="center">{{event.name}}</h3>
                             </div>
                         </div>
                     </li>

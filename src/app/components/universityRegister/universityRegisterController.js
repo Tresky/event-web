@@ -9,11 +9,16 @@
 import './universityRegisterStyles.styl'
 
 angular.module('app')
-  .controller('UniversityRegisterController', function ($log) {
+  .controller('UniversityRegisterController', function ($log, $auth) {
     var vm = this
     vm.test = 'testing'
-    vm.func = () => {
-      $log.log('Function was called')
+
+    //Log the user out
+    $auth.logout()
+
+    //register call
+    vm.register = () => {
+      $log.log('Data: ', vm.signupData)
     }
   }
 )
