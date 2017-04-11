@@ -14,13 +14,16 @@
                         </div>
                         <div class="panel-body">
                             <div class="col-md-12">
-                                <i class="fa fa-graduation-cap" aria-hidden="true"></i> Name: {name}
+                                <i class="fa fa-graduation-cap" aria-hidden="true"></i> Name: {{univCtrl.uniData.name}}
                             </div>
                             <div class="col-md-12">
-                                <i class="fa fa-align-left" aria-hidden="true"></i> Description: {description}
+                                <i class="fa fa-align-left" aria-hidden="true"></i> Description: {{univCtrl.uniData.description}}
                             </div>
                             <div class="col-md-12">
-                                <i class="fa fa-user" aria-hidden="true"></i> Number of Students: {num_of_students}
+                                <i class="fa fa-clock-o" aria-hidden="true"></i> Created at: {{univCtrl.uniData.createdAt}}
+                            </div>
+                            <div class="col-md-12">
+                                <i class="fa fa-clock-o" aria-hidden="true"></i> Updated at: {{univCtrl.uniData.updatedAt}}
                             </div>
                         </div>
                         <div class="panel-footer">
@@ -38,176 +41,23 @@
                 <!-- /.panel-heading -->
                 <div class="panel-body">
                     <ul class="list">
-                        <li class="left clearfix">
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <div class="btn-group-vertical">
-                                        <button class="btn btn-success">Subscribe
-                                            <i class="fa fa-plus" aria-hidden="true"></i>
-                                        </button>
-                                        <button class="btn btn-info">Details
-                                            <i class="fa fa-eye" aria-hidden="true"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="col-md-9">
-                                    <h3 class="center">{rso_name}</h3>
+                      <li class="left clearfix" ng-repeat='rso in univCtrl.rsoData'>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <div class="btn-group-vertical">
+                                    <button class="btn btn-success">Subscribe
+                                        <i class="fa fa-plus" aria-hidden="true"></i>
+                                    </button>
+                                    <button class="btn btn-info">Details
+                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                    </button>
                                 </div>
                             </div>
-                        </li>
-                        <li class="left clearfix">
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <div class="btn-group-vertical">
-                                        <button class="btn btn-success">Subscribe
-                                            <i class="fa fa-plus" aria-hidden="true"></i>
-                                        </button>
-                                        <button class="btn btn-info">Details
-                                            <i class="fa fa-eye" aria-hidden="true"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="col-md-9">
-                                    <h3 class="center">{rso_name}</h3>
-                                </div>
+                            <div class="col-md-9">
+                                <h3 class="center">{{rso.name}}</h3>
                             </div>
-                        </li>
-                        <li class="left clearfix">
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <div class="btn-group-vertical">
-                                        <button class="btn btn-success">Subscribe
-                                            <i class="fa fa-plus" aria-hidden="true"></i>
-                                        </button>
-                                        <button class="btn btn-info">Details
-                                            <i class="fa fa-eye" aria-hidden="true"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="col-md-9">
-                                    <h3 class="center">{rso_name}</h3>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="left clearfix">
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <div class="btn-group-vertical">
-                                        <button class="btn btn-success">Subscribe
-                                            <i class="fa fa-plus" aria-hidden="true"></i>
-                                        </button>
-                                        <button class="btn btn-info">Details
-                                            <i class="fa fa-eye" aria-hidden="true"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="col-md-9">
-                                    <h3 class="center">{rso_name}</h3>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="left clearfix">
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <div class="btn-group-vertical">
-                                        <button class="btn btn-success">Subscribe
-                                            <i class="fa fa-plus" aria-hidden="true"></i>
-                                        </button>
-                                        <button class="btn btn-info">Details
-                                            <i class="fa fa-eye" aria-hidden="true"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="col-md-9">
-                                    <h3 class="center">{rso_name}</h3>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="left clearfix">
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <div class="btn-group-vertical">
-                                        <button class="btn btn-success">Subscribe
-                                            <i class="fa fa-plus" aria-hidden="true"></i>
-                                        </button>
-                                        <button class="btn btn-info">Details
-                                            <i class="fa fa-eye" aria-hidden="true"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="col-md-9">
-                                    <h3 class="center">{rso_name}</h3>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="left clearfix">
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <div class="btn-group-vertical">
-                                        <button class="btn btn-success">Subscribe
-                                            <i class="fa fa-plus" aria-hidden="true"></i>
-                                        </button>
-                                        <button class="btn btn-info">Details
-                                            <i class="fa fa-eye" aria-hidden="true"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="col-md-9">
-                                    <h3 class="center">{rso_name}</h3>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="left clearfix">
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <div class="btn-group-vertical">
-                                        <button class="btn btn-success">Subscribe
-                                            <i class="fa fa-plus" aria-hidden="true"></i>
-                                        </button>
-                                        <button class="btn btn-info">Details
-                                            <i class="fa fa-eye" aria-hidden="true"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="col-md-9">
-                                    <h3 class="center">{rso_name}</h3>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="left clearfix">
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <div class="btn-group-vertical">
-                                        <button class="btn btn-success">Subscribe
-                                            <i class="fa fa-plus" aria-hidden="true"></i>
-                                        </button>
-                                        <button class="btn btn-info">Details
-                                            <i class="fa fa-eye" aria-hidden="true"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="col-md-9">
-                                    <h3 class="center">{rso_name}</h3>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="left clearfix">
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <div class="btn-group-vertical">
-                                        <button class="btn btn-success">Subscribe
-                                            <i class="fa fa-plus" aria-hidden="true"></i>
-                                        </button>
-                                        <button class="btn btn-info">Details
-                                            <i class="fa fa-eye" aria-hidden="true"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="col-md-9">
-                                    <h3 class="center">{rso_name}</h3>
-                                </div>
-                            </div>
-                        </li>
+                        </div>
+                      </li>
                     </ul>
                 </div>
             </div>
