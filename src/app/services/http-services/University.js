@@ -14,7 +14,7 @@ angular.module('app')
     let Universities = {
 
       findAll (params) {
-        return $http.get(baseUrl, params)
+        return $http.put(baseUrl, params)
           .then((uni) => {
             return _.map(uni.data, (i) => {
               return new University(i)
@@ -25,7 +25,7 @@ angular.module('app')
       },
 
       findById (id) {
-        return $http.get(baseUrl + '/' + id)
+        return $http.put(baseUrl + '/' + id)
           .then((uni) => {
             return new University(uni.data)
           }, (response) => {
