@@ -12,12 +12,12 @@
 import './dashboardStyles.styl'
 
 angular.module('app')
-  .controller('DashboardController', function ($log, Rso) {
+  .controller('DashboardController', function ($log, $http, Rso) {
     let vm = this
 
-    vm.rsoFeed = [{event: "Face Painting 1", rso: "SGA", date: "10/20/2017", university: "University of Central Florida", proximity: "0 MI"},
-                  {event: "Face Painting 2", rso: "SGA", date: "10/20/2017", university: "University of Central Florida", proximity: "0 MI"},
-                  {event: "Face Painting 3", rso: "SGA", date: "10/20/2017", university: "University of Central Florida", proximity: "0 MI"}]
+    vm.rsoFeed = [{event: 'Face Painting 1', rso: 'SGA', date: '10/20/2017', university: 'University of Central Florida', proximity: '0 MI'},
+                  {event: 'Face Painting 2', rso: 'SGA', date: '10/20/2017', university: 'University of Central Florida', proximity: '0 MI'},
+                  {event: 'Face Painting 3', rso: 'SGA', date: '10/20/2017', university: 'University of Central Florida', proximity: '0 MI'}]
 
     $log.log('DashboardController')
 

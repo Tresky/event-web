@@ -1,5 +1,4 @@
 import angular from 'angular'
-import angularCookies from 'angular-cookie'
 import satellizer from 'satellizer'
 import uiRouter from 'angular-ui-router'
 import ngMap from 'ngmap'
@@ -13,7 +12,6 @@ angular.module('app', [
   // 'ngAnimate',
   // 'ui.bootstrap',
   ngMap,
-  angularCookies,
   satellizer,
   uiRouter
   // 'vModal'
@@ -133,6 +131,11 @@ angular.module('app', [
         $authProvider.baseUrl = '/'
       }
       $authProvider.loginUrl = '/auth/login'
+    }])
+    .run(['$rootScope', '$auth', '$window', ($rootScope, $auth, $window) => {
+      if ($auth.isAuthenticated()) {
+        $rootScope.currentUser = angular.fromJson($window.localStorage.currentUser)
+      }
     }])
 
 require('./services/index.js')

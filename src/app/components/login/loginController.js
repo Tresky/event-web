@@ -9,18 +9,21 @@
 import './loginStyles.styl'
 
 angular.module('app')
-  .controller('LoginController', function ($log, $timeout, $auth, $location) {
+  .controller('LoginController', function ($log, $timeout, $auth, $location, $window, $rootScope) {
     let vm = this
 
     vm.submit = () => {
       $auth.login(vm.loginData)
         .then((response) => {
           $log.log('Success', response)
+          $window.localStorage.currentUser = angular.toJson(response.data.user)
+          $rootScope.currentUser = angular.fromJson($window.localStorage.currentUser)
           $timeout(() => {
             $location.path('/dashboard')
           })
-        }, (response) => {
-          $log.log('Failure', response)
+        })
+        .catch((response) => {
+          $log.log('Failed to login', response)
         })
     }
   }
