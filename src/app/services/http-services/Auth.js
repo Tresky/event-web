@@ -20,7 +20,7 @@ angular.module('app')
           }, (response) => {
             return $q.reject(response)
           })
-      },
+      }
     }
 
     return mAuth
