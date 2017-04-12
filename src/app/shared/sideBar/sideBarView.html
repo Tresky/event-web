@@ -1,0 +1,26 @@
+<div id="sidebar-wrapper">
+  <ul class="sidebar-nav">
+    <li class="sidebar-brand">
+      <a href="/#/">
+        <img class="img-responsive" src="img/sidebar-logo.png" alt="Logo">
+      </a>
+    </li>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <li>
+      <label for="selected-university" class="center">
+        Change University:
+      </label>
+      <select class="center" id="selected-university" ng-model="sidebarCtrl.selectedUniversity"
+              ng-options="university as university.name for university in sidebarCtrl.universities track by university.id">
+      </select>
+    </li>
+    <li class="center">
+      Selected: {{sidebarCtrl.selectedUniversity.name}}
+    </li>
+  </ul>
+</div>
