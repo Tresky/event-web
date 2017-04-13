@@ -9,29 +9,33 @@
 import './registerStyles.styl'
 
 angular.module('app')
-  .controller('RegisterController', function ($log, $timeout, $auth, $location, Auth, University) {
+  .controller('RegisterController', function ($log, $timeout, $auth, $location, $window, $rootScope, Auth, University) {
     var vm = this
 
-    //Log the user out
+    // Log the user out
     $auth.logout()
 
-    //get universities list
+    // get universities list
     University.findAll()
       .then((uni) => {
         $log.log(uni)
         vm.universities = uni
       })
 
-    //sign up call
+    // sign up call
     vm.submit = () => {
       Auth.signup(vm.signupData)
         .then((response) => {
           $log.log('Success', response)
 
-          //set the token
+          // set the token
           $auth.setToken(response.token)
 
-          //redirect to dash
+          //update rootscope
+          $window.localStorage.currentUser = angular.toJson(response.user)
+          $rootScope.currentUser = angular.fromJson($window.localStorage.currentUser)
+
+          // redirect to dash
           $timeout(() => {
             $location.path('/dashboard')
           })
@@ -42,4 +46,4 @@ angular.module('app')
   }
 )
 
-//registerCtrl
+// registerCtrl
