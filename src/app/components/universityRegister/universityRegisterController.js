@@ -9,7 +9,7 @@
 import './universityRegisterStyles.styl'
 
 angular.module('app')
-  .controller('UniversityRegisterController', function ($log, $auth, $location, $timeout, Auth) {
+  .controller('UniversityRegisterController', function ($log, $auth, $location, $timeout, $window, $rootScope, Auth) {
     var vm = this
     vm.test = 'testing'
 
@@ -26,6 +26,10 @@ angular.module('app')
 
           //set the token
           $auth.setToken(response.token)
+
+          //update rootscope
+          $window.localStorage.currentUser = angular.toJson(response.user)
+          $rootScope.currentUser = angular.fromJson($window.localStorage.currentUser)
 
           //redirect to dash
           $timeout(() => {

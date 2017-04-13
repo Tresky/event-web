@@ -15,6 +15,9 @@ angular.module('app')
         vm.universities = []
 
         vm.init = function () {
+          if (!$rootScope.currentUser)
+            return
+
           let payload = { userId: $rootScope.currentUser.id }
           University.findAll(payload)
             .then(function (data) {
@@ -31,7 +34,13 @@ angular.module('app')
         }
 
         vm.init()
-      }]
+      }],
+      link: function(scope, element, attrs) {
+        scope.$watch('$root.currentUser', function() {
+            $log.log("currentUser changed")
+            scope.sidebarCtrl.init()
+        });
+      }
     }
   }
 )
