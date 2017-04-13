@@ -12,26 +12,26 @@ angular.module('app')
   .controller('RegisterController', function ($log, $timeout, $auth, $location, Auth, University) {
     var vm = this
 
-    //Log the user out
+    // Log the user out
     $auth.logout()
 
-    //get universities list
+    // get universities list
     University.findAll()
       .then((uni) => {
         $log.log(uni)
         vm.universities = uni
       })
 
-    //sign up call
+    // sign up call
     vm.submit = () => {
       Auth.signup(vm.signupData)
         .then((response) => {
           $log.log('Success', response)
 
-          //set the token
+          // set the token
           $auth.setToken(response.token)
 
-          //redirect to dash
+          // redirect to dash
           $timeout(() => {
             $location.path('/dashboard')
           })
@@ -42,4 +42,4 @@ angular.module('app')
   }
 )
 
-//registerCtrl
+// registerCtrl

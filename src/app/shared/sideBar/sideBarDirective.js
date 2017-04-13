@@ -15,19 +15,22 @@ angular.module('app')
         vm.universities = []
 
         vm.init = function () {
-          University.findAll().then(function (data) {
-            vm.universities = data
+          let payload = { userId: $rootScope.currentUser.id }
+          University.findAll(payload)
+            .then(function (data) {
+              vm.universities = data
 
-            if(vm.universities.length >= 1)
-              vm.selectedUniversity = vm.universities[0]
-          });
+              if (vm.universities.length >= 1) {
+                vm.selectedUniversity = vm.universities[0]
+              }
+            })
         }
 
         vm.update = function () {
           $rootScope.$broadcast('UniversityChanged', vm.selectedUniversity)
         }
 
-        vm.init();
+        vm.init()
       }]
     }
   }

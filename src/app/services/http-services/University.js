@@ -14,7 +14,11 @@ angular.module('app')
     let Universities = {
 
       findAll (params) {
-        return $http.put(baseUrl, params)
+        let payload = {
+          params: params
+        }
+
+        return $http.get(baseUrl, payload)
           .then((uni) => {
             return _.map(uni.data, (i) => {
               return new University(i)
