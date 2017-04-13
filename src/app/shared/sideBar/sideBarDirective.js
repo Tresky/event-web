@@ -15,7 +15,7 @@ angular.module('app')
         vm.universities = []
 
         vm.init = function () {
-          if (!$rootScope.currentUser)
+          if (!$auth.isAuthenticated())
             return
 
           let payload = { userId: $rootScope.currentUser.id }
@@ -25,6 +25,7 @@ angular.module('app')
 
               if (vm.universities.length >= 1) {
                 vm.selectedUniversity = vm.universities[0]
+                $rootScope.$broadcast('UniversityChanged', vm.selectedUniversity)
               }
             })
         }

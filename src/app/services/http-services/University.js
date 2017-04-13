@@ -29,7 +29,7 @@ angular.module('app')
       },
 
       findById (id) {
-        return $http.put(baseUrl + '/' + id)
+        return $http.get(baseUrl + '/' + id)
           .then((uni) => {
             return new University(uni.data)
           }, (response) => {
