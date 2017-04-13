@@ -16,8 +16,15 @@ angular.module('app')
     let vm = this
 
     $scope.$on('UniversityChanged', function(events, args){
-      $log.log('Ok selected univId: ', args.id);
+      $log.log('Ok selected univId: ', args.id)
+      vm.univId = args.id
 
+      Rso.findAll(vm.univId)
+        .then((response) => {
+          $log.log('RSO findall Success', response)
+        }, (response) => {
+          $log.log('RSO findall Failure', response)
+        })
     })
 
     $log.log('DashboardController')
