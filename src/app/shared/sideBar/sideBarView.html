@@ -15,7 +15,7 @@
       <label for="selected-university" class="center">
         Change University:
       </label>
-      <select class="center" id="selected-university" ng-model="sidebarCtrl.selectedUniversity"
+      <select class="center" id="selected-university" ng-model="sidebarCtrl.selectedUniversity" ng-change="sidebarCtrl.update()"
               ng-options="university as university.name for university in sidebarCtrl.universities track by university.id">
       </select>
     </li>

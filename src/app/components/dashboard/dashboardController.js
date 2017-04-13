@@ -12,8 +12,15 @@
 import './dashboardStyles.styl'
 
 angular.module('app')
-  .controller('DashboardController', function ($log, $http, Rso, Notification) {
+  .controller('DashboardController', function ($log, $http, Rso, $scope, Notification) {
     let vm = this
+
+    $scope.$on('UniversityChanged', function(events, args){
+      $log.log('Ok selected univId: ', args.id);
+
+    })
+
+    $log.log('DashboardController')
 
     vm.requestRso = () => {
       if(vm.rsoEmail1 && vm.rsoEmail2 && vm.rsoEmail3 && vm.rsoEmail4 && vm.rsoEmail5)

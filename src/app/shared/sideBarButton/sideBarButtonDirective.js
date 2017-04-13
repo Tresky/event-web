@@ -10,7 +10,7 @@ angular.module('app')
         let vm = this
 
         vm.toggle = function () {
-          $("#wrapper").toggleClass("toggled");
+          $('#wrapper').toggleClass('toggled')
         }
       }]
     }
