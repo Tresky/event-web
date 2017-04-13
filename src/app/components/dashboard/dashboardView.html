@@ -19,26 +19,26 @@
             </tr>
             </thead>
             <tbody>
-              <tr ng-repeat="feed in dashCtrl.rsoFeed">
-                <td>{{ feed.event }}</td>
-                <td>{{ feed.rso }}</td>
-                <td>{{ feed.date }}</td>
-                <td>{{ feed.university }}</td>
-                <td>{{ feed.proximity }}</td>
-                <td>
-                  <div class="btn-group-vertical">
-                    <button class="btn btn-success">
-                      <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit
-                    </button>
-                    <button class="btn btn-primary">
-                      <i class="fa fa-eye" aria-hidden="true"></i> View
-                    </button>
-                    <button class="btn btn-danger">
-                      <i class="fa fa-close" aria-hidden="true"></i> Leave
-                    </button>
-                  </div>
-                </td>
-              </tr>
+            <tr ng-repeat="feed in dashCtrl.rsoFeed">
+              <td>{{ feed.event }}</td>
+              <td>{{ feed.rso }}</td>
+              <td>{{ feed.date }}</td>
+              <td>{{ feed.university }}</td>
+              <td>{{ feed.proximity }}</td>
+              <td>
+                <div class="btn-group-vertical">
+                  <button class="btn btn-success">
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit
+                  </button>
+                  <button class="btn btn-primary">
+                    <i class="fa fa-eye" aria-hidden="true"></i> View
+                  </button>
+                  <button class="btn btn-danger">
+                    <i class="fa fa-close" aria-hidden="true"></i> Leave
+                  </button>
+                </div>
+              </td>
+            </tr>
             </tbody>
           </table>
         </div>
@@ -95,7 +95,8 @@
               <div class="col-md-12">
                 <div class="form-group">
                   <label for="description">Description:</label>
-                  <textarea class="form-control" rows="5" id="rso-description" ng-model="dashCtrl.rsoData.description"></textarea>
+                  <textarea class="form-control" rows="5" id="rso-description"
+                            ng-model="dashCtrl.rsoData.description"></textarea>
                 </div>
               </div>
               <div class="col-md-12">
@@ -143,13 +144,14 @@
           <div class="col-md-12">
             <div class="form-group">
               <label for="description">Description:</label>
-              <textarea class="form-control" rows="5" id="description" ng-model="dashCtrl.eventData.description"></textarea>
+              <textarea class="form-control" rows="5" id="description"
+                        ng-model="dashCtrl.eventData.description"></textarea>
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
               <label for="event-date">Date:</label>
-              <input id="event-date" class="form-control" ng-model="dashCtrl.eventData.date">
+              <input id="event-date" class="form-control" ng-model="dashCtrl.eventData.date" type="date">
             </div>
           </div>
           <div class="col-md-6">
@@ -173,7 +175,11 @@
           <div class="col-md-6">
             <div class="form-group">
               <label for="event-privacy">Privacy:</label>
-              <select id="event-privacy" class="form-control" ng-model="dashCtrl.eventData.privacy"></select>
+              <select id="event-privacy" class="form-control" ng-model="dashCtrl.eventData.privacy">
+                <option value="0">Public</option>
+                <option value="1">Private</option>
+                <option value="2">RSO Only</option>
+              </select>
             </div>
           </div>
           <div class="col-md-6">
