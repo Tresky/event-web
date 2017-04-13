@@ -15,6 +15,18 @@ angular.module('app')
   .controller('DashboardController', function ($log, $http, Rso) {
     let vm = this
 
+    $scope.$on('UniversityChanged', function(events, args){
+      $log.log('Ok selected univId: ', args.id)
+      vm.univId = args.id
+
+      Rso.findAll(vm.univId)
+        .then((response) => {
+          $log.log('RSO findall Success', response)
+        }, (response) => {
+          $log.log('RSO findall Failure', response)
+        })
+    })
+
     vm.rsoFeed = [{event: 'Face Painting 1', rso: 'SGA', date: '10/20/2017', university: 'University of Central Florida', proximity: '0 MI'},
                   {event: 'Face Painting 2', rso: 'SGA', date: '10/20/2017', university: 'University of Central Florida', proximity: '0 MI'},
                   {event: 'Face Painting 3', rso: 'SGA', date: '10/20/2017', university: 'University of Central Florida', proximity: '0 MI'}]
@@ -32,8 +44,7 @@ angular.module('app')
       $log.log('requestRso was called')
       $log.log('Data: ', vm.rsoData)
 
-      //TODO: Change hardcoded value to dropdown box
-      Rso.create(1,vm.rsoData)
+      Rso.create(vm.univId,vm.rsoData)
         .then((response) => {
           $log.log('Success', response)
         }, (response) => {
