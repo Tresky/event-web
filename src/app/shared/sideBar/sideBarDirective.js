@@ -16,12 +16,14 @@ angular.module('app')
         vm.universities = [];
 
         vm.init = function () {
-          University.findAll().then(function (data) {
-            vm.universities = data;
-
-            if(vm.universities.length >= 1)
-              vm.selectedUniversity = vm.universities[0];
-          });
+          if($auth.isAuthenticated())
+          {
+            University.findAll().then(function (data) {
+              vm.universities = data;
+              if(vm.universities.length >= 1)
+                vm.selectedUniversity = vm.universities[0];
+            });
+          }
         }
 
         vm.init();

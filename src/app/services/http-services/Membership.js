@@ -1,6 +1,6 @@
 angular.module('app')
   .factory('Membership', ($q, $http, ServerUrls, _) => {
-    let baseUrl = ServerUrls.current.nodeApi + 'membership'
+    let baseUrl = ServerUrls.current.nodeApi + 'subscription'
 
     let Membership = (initData) => {
       let mem = {}

@@ -9,24 +9,61 @@
 import './universityStyles.styl'
 
 angular.module('app')
-  .controller('UniversityController', function ($log, $location, University) {
+  .controller('UniversityController', function ($log, $location, University, $stateParams, $state, Rso, Membership, $rootScope) {
     var vm = this
+    vm.uniId = null;
+
     vm.test = 'testing'
     vm.func = () => {
       $log.log('Function was called')
     }
 
-    var uniId = $location.search().uid
+    vm.subscribe = function (rsoId) {
 
-    University.findById(uniId)
-      .then((response) => {
-        vm.uniData = response
-        $log.log('Success', response)
-      }, (response) => {
-        $log.log('Failure', response)
-      })
+      var request = {
+        rsoID: rsoId,
+        // userId: $rootScope.currentUser.id
+      }
 
-    vm.rsoData  = [{name: "RSOOOOO 1"}, {name: "RSOOOOO 2"}, {name: "RSOOOOO 3"}, {name: "RSOOOOO 4"}]
+      // Membership.create(rsoId)
+      //   .then((response) => {
+      //     console.log(response)
+      //     $log.log('Success', response)
+      //   }, (response) => {
+      //     $log.log('Failure', response)
+      //     $state.go('dashboard')
+      //   })
+    }
+
+    vm.details = function (rsoId) {
+      // Send them to the rso page.
+      $location.path('university/' + vm.uniId + "/rso/" + rsoId);
+    }
+
+    vm.init = function () {
+      // Get the uni id from the url
+      vm.uniId = $stateParams.uniId
+
+      University.findById(vm.uniId)
+        .then((response) => {
+          vm.uniData = response
+          $log.log('Success', response)
+        }, (response) => {
+          $log.log('Failure', response)
+          $state.go('dashboard')
+        })
+
+      Rso.findAll(vm.uniId)
+        .then((response) => {
+          vm.rsoData = response
+          $log.log('Success', response)
+        }, (response) => {
+          $log.log('Failure', response)
+          $state.go('dashboard')
+        })
+    }
+
+    vm.init()
     //vm.uniData = {name: "Trump University", description: "Very good university", num_of_students: "0"}
 
   }

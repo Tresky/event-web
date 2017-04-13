@@ -2,6 +2,7 @@ import angular from 'angular'
 import satellizer from 'satellizer'
 import uiRouter from 'angular-ui-router'
 import ngMap from 'ngmap'
+import angularNotification from 'angular-ui-notification'
 
 import * as _ from 'lodash'
 
@@ -13,7 +14,8 @@ angular.module('app', [
   // 'ui.bootstrap',
   ngMap,
   satellizer,
-  uiRouter
+  uiRouter,
+  angularNotification,
   // 'vModal'
 
 ]).constant('_', _)
@@ -80,7 +82,7 @@ angular.module('app', [
           }
         })
         .state('university', {
-          url: '/university',
+          url: '/university/:uniId',
           template: require('./components/university/universityView.html'),
           controller: 'UniversityController',
           controllerAs: 'univCtrl',
@@ -89,7 +91,7 @@ angular.module('app', [
           }
         })
         .state('rso', {
-          url: '/rso',
+          url: '/university/:uniId/rso/:rsoId',
           template: require('./components/rso/rsoView.html'),
           controller: 'RsoController',
           controllerAs: 'rsoCtrl',
