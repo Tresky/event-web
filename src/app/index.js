@@ -3,6 +3,7 @@ import satellizer from 'satellizer'
 import uiRouter from 'angular-ui-router'
 import ngMap from 'ngmap'
 import angularNotification from 'angular-ui-notification'
+import bootstrapUi from 'angular-ui-bootstrap'
 
 import * as _ from 'lodash'
 
@@ -16,6 +17,7 @@ angular.module('app', [
   satellizer,
   uiRouter,
   angularNotification,
+  bootstrapUi,
   // 'vModal'
 
 ]).constant('_', _)

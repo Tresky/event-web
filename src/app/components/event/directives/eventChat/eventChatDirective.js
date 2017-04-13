@@ -10,6 +10,14 @@ angular.module('app')
       controller: [function () {
         let vm = this
 
+        vm.status = {
+          isopen: false
+        };
+
+        vm.toggleDropdown = function($event) {
+          console.log('asdf')
+          vm.status.isopen = !vm.status.isopen;
+        };
 
       }]
     }
