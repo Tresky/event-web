@@ -12,7 +12,7 @@
 import './dashboardStyles.styl'
 
 angular.module('app')
-  .controller('DashboardController', function ($log, $http, Rso) {
+  .controller('DashboardController', function ($log, $http, $scope, Rso) {
     let vm = this
 
     $scope.$on('UniversityChanged', function(events, args){
