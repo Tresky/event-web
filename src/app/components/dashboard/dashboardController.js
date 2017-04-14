@@ -12,8 +12,10 @@
 import './dashboardStyles.styl'
 
 angular.module('app')
-  .controller('DashboardController', function ($log, $http, Rso, $scope, Notification) {
+  .controller('DashboardController', function ($log, $http, Rso, Event, $scope, Notification) {
     let vm = this
+
+    vm.rsoList = {}
 
     $scope.$on('UniversityChanged', function(events, args){
       $log.log('Ok selected univId: ', args.id)
@@ -21,6 +23,7 @@ angular.module('app')
 
       Rso.findAll(vm.univId)
         .then((response) => {
+          vm.rsoList = response
           $log.log('RSO findall Success', response)
         }, (response) => {
           $log.log('RSO findall Failure', response)
@@ -42,8 +45,7 @@ angular.module('app')
         $log.log('requestRso was called')
         $log.log('Data: ', vm.rsoData)
 
-        //TODO: Change hardcoded value to dropdown box
-        Rso.create(1,vm.rsoData)
+        Rso.create(vm.univId,vm.rsoData)
           .then((response) => {
             $log.log('Success', response)
             Notification.success(
@@ -69,7 +71,66 @@ angular.module('app')
 
     vm.createEvent = () => {
       $log.log('createEvent was called')
+
+      if(vm.startDate && vm.startTime) {
+        var start = new Date(vm.startDate.getFullYear(),
+                         vm.startDate.getMonth(),
+                         vm.startDate.getDate(),
+                         vm.startTime.getHours(),
+                         vm.startTime.getMinutes(),
+                         vm.startTime.getSeconds(),
+                         vm.startTime.getMilliseconds())
+
+      }
+      else {
+        Notification.error(
+          {
+            message: 'Please fill start date and time.',
+            positionY: 'bottom',
+            positionX: 'right'
+          }
+        )
+        return
+      }
+
+      if(vm.endDate && vm.endTime) {
+        var end = new Date(vm.endDate.getFullYear(),
+                         vm.endDate.getMonth(),
+                         vm.endDate.getDate(),
+                         vm.endTime.getHours(),
+                         vm.endTime.getMinutes(),
+                         vm.endTime.getSeconds(),
+                         vm.endTime.getMilliseconds())
+
+      }
+      else {
+        Notification.error(
+          {
+            message: 'Please fill end date and time.',
+            positionY: 'bottom',
+            positionX: 'right'
+          }
+        )
+        return
+      }
+
+      vm.eventData.startTime = start
+      vm.eventData.endTime = end
+
       $log.log('Data: ', vm.eventData)
+      Event.create(vm.univId,vm.eventData)
+        .then((response) => {
+          $log.log('Success', response)
+          Notification.success(
+            {
+              message: 'Event successfully created.',
+              positionY: 'bottom',
+              positionX: 'right'
+            }
+          )
+        }, (response) => {
+          $log.log('Failure', response)
+        })
     }
 
     vm.init = function () {
