@@ -12,25 +12,10 @@
 import './dashboardStyles.styl'
 
 angular.module('app')
-  .controller('DashboardController', function ($log, $http, Rso, Event, $scope, Notification) {
+  .controller('DashboardController', function ( $rootScope, $scope, $log, $http, $location, Notification, Rso, Event, University, Subscription) {
     let vm = this
 
     vm.rsoList = {}
-
-    $scope.$on('UniversityChanged', function(events, args){
-      $log.log('Ok selected univId: ', args.id)
-      vm.univId = args.id
-
-      Rso.findAll(vm.univId)
-        .then((response) => {
-          vm.rsoList = response
-          $log.log('RSO findall Success', response)
-        }, (response) => {
-          $log.log('RSO findall Failure', response)
-        })
-    })
-
-    $log.log('DashboardController')
 
     vm.requestRso = () => {
       if(vm.rsoEmail1 && vm.rsoEmail2 && vm.rsoEmail3 && vm.rsoEmail4 && vm.rsoEmail5)
@@ -133,11 +118,109 @@ angular.module('app')
         })
     }
 
-    vm.init = function () {
-      vm.rsoFeed = [{event: 'Face Painting 1', rso: 'SGA', date: '10/20/2017', university: 'University of Central Florida', proximity: '0 MI'},
-        {event: 'Face Painting 2', rso: 'SGA', date: '10/20/2017', university: 'University of Central Florida', proximity: '0 MI'},
-        {event: 'Face Painting 3', rso: 'SGA', date: '10/20/2017', university: 'University of Central Florida', proximity: '0 MI'}]
+    vm.getRsoName = (rsoId) => {
+      for (var i = 0, len = vm.rsoList.length; i < len; i++) {
+        if(vm.rsoList[i].id == rsoId) {
+          return vm.rsoList[i].name
+        }
+      }
+      return 'unknow rso'
+    }
 
+    vm.getUniversityName = (univId) => {
+      for (var i = 0, len = vm.univList.length; i < len; i++) {
+        if(vm.univList[i].id == univId) {
+          return vm.univList[i].name
+        }
+      }
+      return 'unknow univ'
+    }
+
+    vm.getDateTime = (str) => {
+      var val = new Date(str)
+      return val.toLocaleDateString()
+    }
+
+    vm.getPrivacyStr = (pri) => {
+      switch(pri)
+      {
+        case 1:
+          return 'RSO Only'
+        case 2:
+          return 'Private'
+        case 3:
+          return 'Public'
+        default:
+          return 'unknow'
+      }
+    }
+
+    vm.viewEvent = (eventId) => {
+      $location.path('/university/' + vm.univId + "/event/" + eventId);
+    }
+
+    vm.unsubscribe = (rsoId) => {
+      $log.log('unsubscribe RSO ID: ', rsoId)
+
+      for (var i = 0, len = vm.subList.length; i < len; i++) {
+        if(vm.subList[i].rsoId == rsoId) {
+          Subscription.destroy(vm.subList[i].id)
+            .then((response) => {
+              vm.init()
+              $log.log('Success', response)
+            }, (response) => {
+              $log.log('Failure', response)
+            })
+        }
+      }
+    }
+
+    vm.init = () => {
+      vm.univId = $rootScope.selectedUnivId
+
+      $scope.$on('UniversityChanged', function(events, args){
+        $log.log('Ok selected univId: ', args.id)
+        vm.init()
+      })
+
+      if(!vm.univId)
+        return
+
+      Rso.findAll(vm.univId)
+        .then((response) => {
+          vm.rsoList = response
+          //$log.log('RSO findall Success', response)
+        }, (response) => {
+          $log.log('RSO findall Failure', response)
+        })
+
+      University.findAll({ userId: $rootScope.currentUser.id })
+        .then((data) => {
+          vm.univList = data
+        })
+
+      //get RSO subscription
+      let payload = { userId: $rootScope.currentUser.id }
+      Subscription.findAll(payload)
+        .then((response) => {
+          vm.subList = response
+
+          var rsoFeed = []
+          for (var i = 0, len = response.length; i < len; i++) {
+            Event.findAll(vm.univId, {rsoId: response[i].rsoId})
+              .then((eventRes) => {
+                rsoFeed = rsoFeed.concat(eventRes)
+                vm.rsoFeed = rsoFeed
+                //$log.log('Event findall Success', eventRes)
+                //$log.log('feed data: ', rsoFeed)
+              }, (eventRes) => {
+                $log.log('Event findall Failure', eventRes)
+              })
+          }
+          //$log.log('Subscription findall Success', response)
+        }, (response) => {
+          $log.log('Subscription findall Failure', response)
+        })
     }
 
     vm.init()
