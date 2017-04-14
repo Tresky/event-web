@@ -175,13 +175,17 @@ angular.module('app')
       }
     }
 
-    vm.init = () => {
-      vm.univId = $rootScope.selectedUnivId
+    $scope.$on('UniversityChanged', function(events, args){
+      $log.log('Ok selected univId: ', args.id)
+      vm.init(args.id)
+    })
 
-      $scope.$on('UniversityChanged', function(events, args){
-        $log.log('Ok selected univId: ', args.id)
-        vm.init()
-      })
+    vm.init = (uniId) => {
+      if(uniId) {
+        vm.univId = uniId
+      } else {
+        vm.univId = $rootScope.selectedUnivId
+      }
 
       if(!vm.univId)
         return
