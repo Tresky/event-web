@@ -9,7 +9,8 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand topnav" href="/">Home</a>
+            <a class="navbar-brand topnav" href="/" ng-if="!navbarCtrl.isAuthenticated()">Home</a>
+            <a class="navbar-brand topnav" href="/dashboard" ng-if="navbarCtrl.isAuthenticated()">Dashboard</a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">

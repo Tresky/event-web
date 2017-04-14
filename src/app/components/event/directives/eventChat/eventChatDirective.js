@@ -1,5 +1,5 @@
 angular.module('app')
-  .directive('eventChat', function ($log, $auth) {
+  .directive('eventChat', function ($log, $auth, Comment) {
     return {
       template: require('./eventChatView.html'),
       restrict: 'A',
@@ -13,6 +13,12 @@ angular.module('app')
         vm.status = {
           isopen: false
         };
+
+        vm.sendComment = function () {
+          console.log(vm.commentText)
+          Comment.create()
+          vm.commentText = ''
+        }
 
         vm.toggleDropdown = function($event) {
           console.log('asdf')

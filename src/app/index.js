@@ -75,7 +75,7 @@ angular.module('app', [
           }]
         })
         .state('event', {
-          url: '/event',
+          url: '/university/:uniId/event/:eventId',
           template: require('./components/event/eventView.html'),
           controller: 'EventController',
           controllerAs: 'eventCtrl',

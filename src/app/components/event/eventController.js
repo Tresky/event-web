@@ -9,13 +9,33 @@
 import './eventStyles.styl'
 
 angular.module('app')
-  .controller('EventController', function ($log) {
+  .controller('EventController', function ($log, Event, Comment, University, $stateParams) {
     var vm = this
     vm.test = 'testing'
+    vm.uniId = $stateParams.uniId
+    vm.eventId = $stateParams.eventId
 
     vm.eventDescr = ['Event1', 'Event2', 'Event3']
 
     vm.init = function () {
+
+      Event.findById(vm.uniId, vm.eventId)
+        .then((response) => {
+          vm.eventData = response
+          $log.log('Success', response)
+        }, (response) => {
+          $log.log('Failure', response)
+          $state.go('dashboard')
+        })
+
+      University.findById(vm.uniId)
+        .then((response) => {
+          vm.uniData = response
+          $log.log('Success', response)
+        }, (response) => {
+          $log.log('Failure', response)
+          $state.go('dashboard')
+        })
       vm.comments = [
         {
           name: 'Tyler Gauntlett',

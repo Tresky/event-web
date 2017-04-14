@@ -12,7 +12,7 @@
 import './dashboardStyles.styl'
 
 angular.module('app')
-  .controller('DashboardController', function ($log, $http, Rso, Event, $scope, Notification) {
+  .controller('DashboardController', function ($log, $http, Rso, $scope, Notification, Event, $rootScope) {
     let vm = this
 
     vm.rsoList = {}
@@ -128,6 +128,7 @@ angular.module('app')
               positionX: 'right'
             }
           )
+          vm.eventData = {};
         }, (response) => {
           $log.log('Failure', response)
         })

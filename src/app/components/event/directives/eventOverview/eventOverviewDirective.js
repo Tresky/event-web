@@ -6,7 +6,7 @@ angular.module('app')
       scope: {
         name: '@',
         uni: '@',
-        descr: '='
+        descr: '@'
       }
     }
   }
