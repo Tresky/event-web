@@ -21,13 +21,7 @@ angular.module('app')
       $log.log('Ok selected univId: ', args.id)
       vm.univId = args.id
 
-      Rso.findAll(vm.univId)
-        .then((response) => {
-          vm.rsoList = response
-          $log.log('RSO findall Success', response)
-        }, (response) => {
-          $log.log('RSO findall Failure', response)
-        })
+      vm.init()
     })
 
     $log.log('DashboardController')
@@ -130,11 +124,30 @@ angular.module('app')
           )
           vm.eventData = {};
         }, (response) => {
+          Notification.error(
+            {
+              message: 'Something bad happened.',
+              positionY: 'bottom',
+              positionX: 'right'
+            }
+          )
           $log.log('Failure', response)
         })
     }
 
     vm.init = function () {
+      var request = {
+        userId: $rootScope.currentUser.id
+      }
+
+      Rso.findAll(vm.univId, request)
+        .then((response) => {
+          vm.rsoList = response
+          $log.log('RSO findall Success', response)
+        }, (response) => {
+          $log.log('RSO findall Failure', response)
+        })
+
       vm.rsoFeed = [{event: 'Face Painting 1', rso: 'SGA', date: '10/20/2017', university: 'University of Central Florida', proximity: '0 MI'},
         {event: 'Face Painting 2', rso: 'SGA', date: '10/20/2017', university: 'University of Central Florida', proximity: '0 MI'},
         {event: 'Face Painting 3', rso: 'SGA', date: '10/20/2017', university: 'University of Central Florida', proximity: '0 MI'}]

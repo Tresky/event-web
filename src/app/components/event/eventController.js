@@ -15,8 +15,6 @@ angular.module('app')
     vm.uniId = $stateParams.uniId
     vm.eventId = $stateParams.eventId
 
-    vm.eventDescr = ['Event1', 'Event2', 'Event3']
-
     vm.init = function () {
 
       Event.findById(vm.uniId, vm.eventId)
@@ -36,38 +34,16 @@ angular.module('app')
           $log.log('Failure', response)
           $state.go('dashboard')
         })
-      vm.comments = [
-        {
-          name: 'Tyler Gauntlett',
-          message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-          created_by_id: 1
-        },
-        {
-          name: 'Frank Schiller',
-          message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-          created_by_id: 2
-        },
-        {
-          name: 'Tyler Gauntlett',
-          message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-          created_by_id: 1
-        },
-        {
-          name: 'Frank Schiller',
-          message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-          created_by_id: 2
-        },
-        {
-          name: 'Tyler Gauntlett',
-          message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-          created_by_id: 1
-        },
-        {
-          name: 'Frank Schiller',
-          message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-          created_by_id: 2
-        }
-      ]
+
+      Comment.findAll(vm.uniId, vm.eventId)
+        .then((response) => {
+          vm.comments = response
+          console.log(vm.comments);
+          $log.log('Success', response)
+        }, (response) => {
+          $log.log('Failure', response)
+          $state.go('dashboard')
+        })
     }
 
     vm.init()

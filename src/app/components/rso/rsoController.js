@@ -9,7 +9,7 @@
 import './rsoStyles.styl'
 
 angular.module('app')
-  .controller('RsoController', function ($log, $location, Rso, $stateParams, $state, University, Event) {
+  .controller('RsoController', function ($log, $location, Rso, $stateParams, $state, University, Event, Subscription, Notification) {
     var vm = this
     vm.test = 'testing'
     vm.uniId = $stateParams.uniId
