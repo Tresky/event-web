@@ -4,6 +4,7 @@ import uiRouter from 'angular-ui-router'
 import ngMap from 'ngmap'
 import uiNotification from 'angular-ui-notification'
 //import bootstrapUi from 'angular-ui-bootstrap'
+import socialshare from 'angular-socialshare'
 
 import * as _ from 'lodash'
 
@@ -17,6 +18,7 @@ angular.module('app', [
   satellizer,
   uiRouter,
   uiNotification,
+  socialshare
   //bootstrapUi,
   // 'vModal'
 
