@@ -1,5 +1,5 @@
 angular.module('app')
-  .directive('eventOverview', function ($log) {
+  .directive('eventOverview', function () {
     return {
       template: require('./eventOverviewView.html'),
       restrict: 'A',

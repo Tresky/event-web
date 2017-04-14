@@ -1,5 +1,5 @@
 angular.module('app')
-  .directive('eventRating', function ($log) {
+  .directive('eventRating', function () {
     return {
       template: require('./eventRatingView.html'),
       restrict: 'A',
