@@ -1,7 +1,6 @@
 <div class="container-fluid">
   <div class="row top-buffer">
     <div class="col-md-10 col-md-offset-1">
-      <div side-bar-button></div>
       <div class="panel panel-default">
         <div class="panel-heading">
           <h3 class="text-center">Subscribed RSO Feed:</h3>
@@ -12,28 +11,30 @@
             <tr>
               <th>Event</th>
               <th>RSO</th>
-              <th>Date</th>
+              <th>Start</th>
+              <th>End</th>
               <th>University</th>
-              <th>Proximity</th>
+              <th>Privacy</th>
               <th>Details</th>
             </tr>
             </thead>
             <tbody>
             <tr ng-repeat="feed in dashCtrl.rsoFeed">
-              <td>{{ feed.event }}</td>
-              <td>{{ feed.rso }}</td>
-              <td>{{ feed.date }}</td>
-              <td>{{ feed.university }}</td>
-              <td>{{ feed.proximity }}</td>
+              <td>{{ feed.name }}</td>
+              <td>{{ dashCtrl.getRsoName(feed.rsoId) }}</td>
+              <td>{{ dashCtrl.getDateTime(feed.startTime) }}</td>
+              <td>{{ dashCtrl.getDateTime(feed.endTime) }}</td>
+              <td>{{ dashCtrl.getUniversityName(feed.universityId) }}</td>
+              <td>{{ dashCtrl.getPrivacyStr(feed.privacy) }}</td>
               <td>
                 <div class="btn-group-vertical">
-                  <button class="btn btn-success">
+                  <!-- <button class="btn btn-success">
                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit
-                  </button>
-                  <button class="btn btn-primary">
+                  </button> -->
+                  <button class="btn btn-primary" ng-click="dashCtrl.viewEvent(feed.id)">
                     <i class="fa fa-eye" aria-hidden="true"></i> View
                   </button>
-                  <button class="btn btn-danger">
+                  <button class="btn btn-danger" ng-click="dashCtrl.unsubscribe(feed.rsoId)">
                     <i class="fa fa-close" aria-hidden="true"></i> Leave
                   </button>
                 </div>

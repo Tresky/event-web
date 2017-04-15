@@ -14,7 +14,11 @@ angular.module('app')
     let mSubscription = {
 
       findAll (params) {
-        return $http.get(baseUrl, params)
+        let payload = {
+          params: params
+        }
+
+        return $http.get(baseUrl, payload)
           .then((sub) => {
             return _.map(sub.data, (i) => {
               return new Subscription(i)

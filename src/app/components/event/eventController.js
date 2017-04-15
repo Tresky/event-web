@@ -9,11 +9,21 @@
 import './eventStyles.styl'
 
 angular.module('app')
-  .controller('EventController', function ($log, Event, Comment, University, $stateParams) {
+  .controller('EventController', function ($log, Event, Comment, University, $stateParams, $state) {
     var vm = this
     vm.test = 'testing'
     vm.uniId = $stateParams.uniId
     vm.eventId = $stateParams.eventId
+
+    vm.getDate = (str) => {
+      var val = new Date(str)
+      return val.toLocaleDateString()
+    }
+
+    vm.getTime = (str) => {
+      var val = new Date(str)
+      return val.toLocaleTimeString()
+    }
 
     vm.init = function () {
 

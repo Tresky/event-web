@@ -9,7 +9,7 @@
 import './universityStyles.styl'
 
 angular.module('app')
-  .controller('UniversityController', function ($log, $location, University, $stateParams, $state, Rso, Membership, $rootScope) {
+  .controller('UniversityController', function ($log, $location, University, $stateParams, $state, Rso, Subscription, $rootScope) {
     var vm = this
     vm.uniId = null;
 
@@ -19,25 +19,27 @@ angular.module('app')
     }
 
     vm.subscribe = function (rsoId) {
-
       var request = {
-        rsoID: rsoId,
-        // userId: $rootScope.currentUser.id
+        rsoId: rsoId,
       }
 
-      // Membership.create(rsoId)
-      //   .then((response) => {
-      //     console.log(response)
-      //     $log.log('Success', response)
-      //   }, (response) => {
-      //     $log.log('Failure', response)
-      //     $state.go('dashboard')
-      //   })
+      Subscription.create(request)
+        .then((response) => {
+          $log.log('Success', response)
+        }, (response) => {
+          $log.log('Failure', response)
+          $state.go('dashboard')
+        })
     }
 
     vm.details = function (rsoId) {
       // Send them to the rso page.
       $location.path('university/' + vm.uniId + "/rso/" + rsoId);
+    }
+
+    vm.getDateTime = (str) => {
+      var val = new Date(str)
+      return val.toLocaleDateString()
     }
 
     vm.init = function () {
@@ -64,7 +66,5 @@ angular.module('app')
     }
 
     vm.init()
-    //vm.uniData = {name: "Trump University", description: "Very good university", num_of_students: "0"}
-
   }
 )

@@ -25,22 +25,27 @@ angular.module('app')
 
               if (vm.universities.length >= 1) {
                 vm.selectedUniversity = vm.universities[0]
-                $rootScope.$broadcast('UniversityChanged', vm.selectedUniversity)
+                vm.update()
               }
             })
         }
 
         vm.update = function () {
+          $log.log('boradcast UniversityChanged')
           $rootScope.$broadcast('UniversityChanged', vm.selectedUniversity)
+          $rootScope.selectedUnivId = vm.selectedUniversity.id
         }
 
         vm.init()
       }],
       link: function(scope, element, attrs) {
         scope.$watch('$root.currentUser', function() {
-            $log.log("currentUser changed")
+            $log.log('currentUser changed')
             scope.sidebarCtrl.init()
-        });
+        })
+        // scope.$watch('sidebarCtrl.selectedUniversity', function(changed) {
+        //   console.log('state changed to ', changed);
+        // });
       }
     }
   }
