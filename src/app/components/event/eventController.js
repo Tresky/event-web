@@ -51,7 +51,6 @@ angular.module('app')
     }
 
     vm.init = function () {
-
       Event.findById(vm.uniId, vm.eventId)
         .then((response) => {
           vm.eventData = response

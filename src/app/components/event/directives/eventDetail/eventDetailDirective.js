@@ -9,7 +9,8 @@ angular.module('app')
         endDate: '@',
         endTime: '@',
         phone: '@',
-        email: '@'
+        email: '@',
+        privacyLevel: '='
       }
     }
   }

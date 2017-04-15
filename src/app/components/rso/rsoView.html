@@ -16,9 +16,6 @@
                         <div class="col-md-12">
                             <i class="fa fa-graduation-cap" aria-hidden="true"></i> University: {{rsoCtrl.uniData.name}}
                         </div>
-                        <div class="col-md-12">
-                            <i class="fa fa-user-secret" aria-hidden="true"></i> Privacy Level: {{rsoCtrl.rsoData.privacy_level}}
-                        </div>
                     </div>
                     <div class="panel-footer" ng-if="rsoCtrl.subList">
                         <button class="btn btn-lg btn-success" ng-click="rsoCtrl.subscribe()" ng-if="!rsoCtrl.rsoData.subscribed">Subscribe</button>

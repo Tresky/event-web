@@ -17,7 +17,7 @@ angular.module('app')
 
     vm.subscribe = () => {
       var request = {
-        rsoId: $stateParams.rsoId,
+        rsoId: $stateParams.rsoId
       }
 
       Subscription.create(request)
@@ -45,11 +45,10 @@ angular.module('app')
     }
 
     vm.viewEvent = (eventId) => {
-      $location.path('/university/' + $stateParams.uniId + "/event/" + eventId);
+      $location.path('/university/' + $stateParams.uniId + "/event/" + eventId)
     }
 
     vm.init = function () {
-
       Rso.findById(vm.uniId, vm.rsoId)
         .then((response) => {
           vm.rsoData = response
