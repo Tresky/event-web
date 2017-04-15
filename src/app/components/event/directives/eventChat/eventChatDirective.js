@@ -14,8 +14,6 @@ angular.module('app')
         vm.eventId = $stateParams.eventId
 
         vm.createComment = function () {
-          console.log(vm.commentText)
-
           let request = {
             message: vm.commentText,
             name: $rootScope.currentUser.firstName + ' ' + $rootScope.currentUser.lastName
@@ -78,7 +76,6 @@ angular.module('app')
               positionX: 'right'
             }
           )
-          console.log('remove')
         }
 
       }]
