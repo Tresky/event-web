@@ -11,7 +11,7 @@ import './universityStyles.styl'
 angular.module('app')
   .controller('UniversityController', function ($log, $location, University, $stateParams, $state, Rso, Subscription, $rootScope, _) {
     var vm = this
-    vm.uniId = null;
+    vm.uniId = null
 
     vm.test = 'testing'
     vm.func = () => {
@@ -20,12 +20,12 @@ angular.module('app')
 
     vm.subscribe = function (rso) {
       var request = {
-        rsoId: rso.id,
+        rsoId: rso.id
       }
 
       Subscription.create(request)
         .then((response) => {
-          var index = _.indexOf(vm.rsoData, rso);
+          var index = _.indexOf(vm.rsoData, rso)
 
           vm.rsoData[index].subscribed = true
         }, (response) => {
@@ -85,6 +85,7 @@ angular.module('app')
                 rso.subscribed = !!_.find(vm.subList, {rsoId: rso.id})
               })
 
+              console.log(vm.rsoData)
             }, (response) => {
               $log.log('Subscription findall Failure', response)
             })
