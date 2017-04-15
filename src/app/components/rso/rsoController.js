@@ -12,6 +12,8 @@ angular.module('app')
   .controller('RsoController', function ($log, $location, Rso, $stateParams, $state, University, Subscription, Event) {
     var vm = this
     vm.test = 'testing'
+    vm.uniId = $stateParams.uniId
+    vm.rsoId = $stateParams.rsoId
 
     vm.subscribe = () => {
       var request = {
@@ -31,10 +33,8 @@ angular.module('app')
     }
 
     vm.init = function () {
-      var uniId = $stateParams.uniId
-      var rsoId = $stateParams.rsoId
 
-      Rso.findById(uniId, rsoId)
+      Rso.findById(vm.uniId, vm.rsoId)
         .then((response) => {
           vm.rsoData = response
         }, (response) => {
@@ -42,7 +42,7 @@ angular.module('app')
           $state.go('dashboard')
         })
 
-      University.findById(uniId)
+      University.findById(vm.uniId)
         .then((response) => {
           vm.uniData = response
         }, (response) => {
@@ -50,7 +50,7 @@ angular.module('app')
           $state.go('dashboard')
         })
 
-      Event.findAll(uniId, {rsoId: rsoId})
+      Event.findAll(uniId, {rsoId: vm.rsoId})
         .then((eventRes) => {
           vm.eventData = eventRes
         }, (eventRes) => {

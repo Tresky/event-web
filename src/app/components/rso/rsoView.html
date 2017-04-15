@@ -35,7 +35,7 @@
             <!-- /.panel-heading -->
             <div class="panel-body">
                 <ul class="list">
-                    <li class="left clearfix" ng-repeat='event in rsoCtrl.eventData'>
+                    <li class="left clearfix" ng-repeat='event in rsoCtrl.eventData' ng-show="event.rsoId == rsoCtrl.rsoId">
                         <div class="row">
                             <div class="col-md-2">
                                 <div class="btn-group-vertical">

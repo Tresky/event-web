@@ -1,5 +1,5 @@
 angular.module('app')
-  .directive('eventChat', function ($log, $auth) {
+  .directive('eventChat', function ($log, $auth, Comment, $stateParams) {
     return {
       template: require('./eventChatView.html'),
       restrict: 'A',
@@ -10,9 +10,17 @@ angular.module('app')
       controller: [function () {
         let vm = this
 
+        vm.uniId = $stateParams.uniId
+        vm.eventId = $stateParams.eventId
+
         vm.status = {
           isopen: false
         };
+
+        vm.sendComment = function () {
+          console.log(vm.commentText)
+          vm.commentText = ''
+        }
 
         vm.toggleDropdown = function($event) {
           console.log('asdf')

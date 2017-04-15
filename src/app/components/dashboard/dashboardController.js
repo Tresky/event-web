@@ -17,6 +17,15 @@ angular.module('app')
 
     vm.rsoList = {}
 
+    $scope.$on('UniversityChanged', function(events, args){
+      $log.log('Ok selected univId: ', args.id)
+      vm.univId = args.id
+
+      vm.init()
+    })
+
+    $log.log('DashboardController')
+
     vm.requestRso = () => {
       if(vm.rsoEmail1 && vm.rsoEmail2 && vm.rsoEmail3 && vm.rsoEmail4 && vm.rsoEmail5)
       {
@@ -113,7 +122,15 @@ angular.module('app')
               positionX: 'right'
             }
           )
+          vm.eventData = {};
         }, (response) => {
+          Notification.error(
+            {
+              message: 'Something bad happened.',
+              positionY: 'bottom',
+              positionX: 'right'
+            }
+          )
           $log.log('Failure', response)
         })
     }
@@ -126,6 +143,18 @@ angular.module('app')
       }
       return 'unknow rso'
     }
+    vm.init = function () {
+      var request = {
+        userId: $rootScope.currentUser.id
+      }
+
+      Rso.findAll(vm.univId, request)
+        .then((response) => {
+          vm.rsoList = response
+          $log.log('RSO findall Success', response)
+        }, (response) => {
+          $log.log('RSO findall Failure', response)
+        })
 
     vm.getUniversityName = (univId) => {
       for (var i = 0, len = vm.univList.length; i < len; i++) {

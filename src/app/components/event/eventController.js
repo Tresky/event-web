@@ -9,9 +9,11 @@
 import './eventStyles.styl'
 
 angular.module('app')
-  .controller('EventController', function ($stateParams, $log, $state, Event) {
+  .controller('EventController', function ($log, Event, Comment, University, $stateParams, $state) {
     var vm = this
     vm.test = 'testing'
+    vm.uniId = $stateParams.uniId
+    vm.eventId = $stateParams.eventId
 
     vm.getDate = (str) => {
       var val = new Date(str)
@@ -24,11 +26,6 @@ angular.module('app')
     }
 
     vm.init = function () {
-      vm.uniId = $stateParams.uniId
-      vm.eventId = $stateParams.eventId
-
-      $log.log("uniId: ", vm.uniId)
-      $log.log("eventId: ", vm.eventId)
 
       Event.findById(vm.uniId, vm.eventId)
         .then((response) => {
@@ -39,38 +36,24 @@ angular.module('app')
           $state.go('dashboard')
         })
 
-      vm.comments = [
-        {
-          name: 'Tyler Gauntlett',
-          message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-          created_by_id: 1
-        },
-        {
-          name: 'Frank Schiller',
-          message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-          created_by_id: 2
-        },
-        {
-          name: 'Tyler Gauntlett',
-          message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-          created_by_id: 1
-        },
-        {
-          name: 'Frank Schiller',
-          message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-          created_by_id: 2
-        },
-        {
-          name: 'Tyler Gauntlett',
-          message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-          created_by_id: 1
-        },
-        {
-          name: 'Frank Schiller',
-          message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-          created_by_id: 2
-        }
-      ]
+      University.findById(vm.uniId)
+        .then((response) => {
+          vm.uniData = response
+          $log.log('Success', response)
+        }, (response) => {
+          $log.log('Failure', response)
+          $state.go('dashboard')
+        })
+
+      Comment.findAll(vm.uniId, vm.eventId)
+        .then((response) => {
+          vm.comments = response
+          console.log(vm.comments);
+          $log.log('Success', response)
+        }, (response) => {
+          $log.log('Failure', response)
+          $state.go('dashboard')
+        })
     }
 
     vm.init()
