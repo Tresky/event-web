@@ -48,7 +48,7 @@ angular.module('app')
       Comment.findAll(vm.uniId, vm.eventId)
         .then((response) => {
           vm.comments = response
-          console.log(vm.comments);
+          console.log('asdf');
           $log.log('Success', response)
         }, (response) => {
           $log.log('Failure', response)

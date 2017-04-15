@@ -50,7 +50,8 @@ angular.module('app')
           $state.go('dashboard')
         })
 
-      Event.findAll(uniId, {rsoId: vm.rsoId})
+      console.log('asdfajosdfasjdofiajs;df')
+      Event.findAll(vm.uniId, {rsoId: vm.rsoId})
         .then((eventRes) => {
           vm.eventData = eventRes
         }, (eventRes) => {

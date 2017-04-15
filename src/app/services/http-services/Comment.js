@@ -1,7 +1,7 @@
 angular.module('app')
   .factory('Comment', ($q, $http, ServerUrls, _) => {
     function baseUrl(uniId, eventId) {
-        return ServerUrls.current.nodeApi + `university/${uniId}/event/${eventId}`
+        return ServerUrls.current.nodeApi + `university/${uniId}/event/${eventId}/comment`
     }
 
     let Comment = (initData) => {
