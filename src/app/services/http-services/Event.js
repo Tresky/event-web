@@ -16,7 +16,11 @@ angular.module('app')
     let mEvent = {
 
       findAll (uniId, params) {
-        return $http.get(baseUrl(uniId), params)
+        let payload = {
+          params: params
+        }
+
+        return $http.get(baseUrl(uniId), payload)
           .then((event) => {
             return _.map(event.data, (i) => {
               return new Event(i)

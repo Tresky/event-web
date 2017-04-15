@@ -2,8 +2,9 @@ import angular from 'angular'
 import satellizer from 'satellizer'
 import uiRouter from 'angular-ui-router'
 import ngMap from 'ngmap'
-import angularNotification from 'angular-ui-notification'
+import uiNotification from 'angular-ui-notification'
 //import bootstrapUi from 'angular-ui-bootstrap'
+import socialshare from 'angular-socialshare'
 
 import * as _ from 'lodash'
 
@@ -16,7 +17,8 @@ angular.module('app', [
   ngMap,
   satellizer,
   uiRouter,
-  angularNotification,
+  uiNotification,
+  socialshare
   //bootstrapUi,
   // 'vModal'
 
@@ -75,7 +77,7 @@ angular.module('app', [
           }]
         })
         .state('event', {
-          url: '/event',
+          url: '/university/:uniId/event/:eventId',
           template: require('./components/event/eventView.html'),
           controller: 'EventController',
           controllerAs: 'eventCtrl',

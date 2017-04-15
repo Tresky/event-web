@@ -20,10 +20,10 @@
                                 <i class="fa fa-align-left" aria-hidden="true"></i> Description: {{univCtrl.uniData.description}}
                             </div>
                             <div class="col-md-12">
-                                <i class="fa fa-clock-o" aria-hidden="true"></i> Created at: {{univCtrl.uniData.createdAt}}
+                                <i class="fa fa-clock-o" aria-hidden="true"></i> Created at: {{univCtrl.getDateTime(univCtrl.uniData.createdAt)}}
                             </div>
                             <div class="col-md-12">
-                                <i class="fa fa-clock-o" aria-hidden="true"></i> Updated at: {{univCtrl.uniData.updatedAt}}
+                                <i class="fa fa-clock-o" aria-hidden="true"></i> Updated at: {{univCtrl.getDateTime(univCtrl.uniData.updatedAt)}}
                             </div>
                         </div>
                         <div class="panel-footer">

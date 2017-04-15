@@ -1,11 +1,13 @@
 angular.module('app')
-  .directive('eventDetail', function ($log) {
+  .directive('eventDetail', function () {
     return {
       template: require('./eventDetailView.html'),
       restrict: 'A',
       scope: {
-        date: '@',
-        time: '@',
+        startDate: '@',
+        startTime: '@',
+        endDate: '@',
+        endTime: '@',
         phone: '@',
         email: '@'
       }

@@ -6,12 +6,16 @@
                     <div ng-map center="[40.74, -74.18]"></div>
                 </div>
                 <div class="col-md-12 top-buffer">
-                    <div event-detail date="1/1/2018" time="13:37" phone="407-GOT-ROOT" email="root@localhost"></div>
+                    <div event-detail
+                          start-date="{{eventCtrl.getDate(eventCtrl.eventData.startTime)}}" start-time="{{eventCtrl.getTime(eventCtrl.eventData.startTime)}}"
+                          end-date="{{eventCtrl.getDate(eventCtrl.eventData.endTime)}}" end-time="{{eventCtrl.getTime(eventCtrl.eventData.endTime)}}"
+                     phone="{{eventCtrl.eventData.contactPhone}}" email="{{eventCtrl.eventData.contactEmail}}"></div>
                 </div>
             </div>
         </div>
         <div class="col-md-6">
-            <div event-overview name="Test" uni="UCF" descr="vm.eventDescr"></div>
+            <div event-overview name="{{eventCtrl.eventData.name}}" uni="{{eventCtrl.eventData.category}}" descr="{{eventCtrl.eventData.description}}"></div>
+            <div social-media message="Check this event out: {{eventCtrl.eventData.name}}"></div>
         </div>
     </div>
     <!-- /.row -->
