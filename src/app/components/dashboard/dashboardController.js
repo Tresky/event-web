@@ -257,5 +257,6 @@ angular.module('app')
     }
 
     vm.init()
-  }
-)
+    }
+    }
+  )
