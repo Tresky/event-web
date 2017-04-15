@@ -186,20 +186,8 @@ angular.module('app')
           $location.path('/university/' + vm.univId + "/event/" + eventId);
         }
 
-        vm.unsubscribe = (rsoId) => {
-          $log.log('unsubscribe RSO ID: ', rsoId)
-
-          for (var i = 0, len = vm.subList.length; i < len; i++) {
-            if (vm.subList[i].rsoId == rsoId) {
-              Subscription.destroy(vm.subList[i].id)
-                .then((response) => {
-                  vm.init()
-                  $log.log('Success', response)
-                }, (response) => {
-                  $log.log('Failure', response)
-                })
-            }
-          }
+        vm.viewRso = (rsoId) => {
+          $location.path('/university/' + vm.univId + "/rso/" + rsoId);
         }
 
         $scope.$on('UniversityChanged', function (events, args) {

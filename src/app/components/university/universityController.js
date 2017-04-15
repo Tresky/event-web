@@ -35,7 +35,6 @@ angular.module('app')
     }
 
     vm.unsubscribe = function (rso) {
-      console.log(rso, vm.subList)
       var subIndex = _.findIndex(vm.subList, {rsoId: rso.id});
 
       Subscription.destroy(vm.subList[subIndex].id)
@@ -86,8 +85,6 @@ angular.module('app')
                 rso.subscribed = !!_.find(vm.subList, {rsoId: rso.id})
               })
 
-
-              console.log(vm.rsoData)
             }, (response) => {
               $log.log('Subscription findall Failure', response)
             })
