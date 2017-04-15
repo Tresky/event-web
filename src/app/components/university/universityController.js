@@ -9,7 +9,7 @@
 import './universityStyles.styl'
 
 angular.module('app')
-  .controller('UniversityController', function ($log, $location, University, $stateParams, $state, Rso, Subscription, $rootScope) {
+  .controller('UniversityController', function ($log, $location, University, $stateParams, $state, Rso, Subscription, $rootScope, _) {
     var vm = this
     vm.uniId = null;
 
@@ -58,6 +58,22 @@ angular.module('app')
       Rso.findAll(vm.uniId)
         .then((response) => {
           vm.rsoData = response
+
+          let payload = {userId: $rootScope.currentUser.id}
+          Subscription.findAll(payload)
+            .then((response) => {
+              vm.subList = response
+
+              _.map(vm.rsoData, function (rso) {
+                rso.subscribed = !!_.find(vm.subList, {rsoId: rso.id})
+              })
+
+              c
+              console.log(vm.rsoData)
+            }, (response) => {
+              $log.log('Subscription findall Failure', response)
+            })
+
           $log.log('Success', response)
         }, (response) => {
           $log.log('Failure', response)
