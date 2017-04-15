@@ -45,12 +45,14 @@
                         <div class="row">
                             <div class="col-md-2">
                                 <div class="btn-group-vertical">
-                                    <button class="btn btn-success" ng-click="univCtrl.subscribe(rso.id)" ng-if="!rso.subscribed">Subscribe
-                                        <i class="fa fa-plus" aria-hidden="true"></i>
-                                    </button>
-                                    <button class="btn btn-danger" ng-click="univCtrl.subscribe(rso.id)" ng-if="rso.subscribed">Unsubscribe
-                                        <i class="fa fa-plus" aria-hidden="true"></i>
-                                    </button>
+                                    <div ng-if="univCtrl.subList">
+                                        <button class="btn btn-success" ng-click="univCtrl.subscribe(rso)" ng-if="!rso.subscribed">Subscribe
+                                            <i class="fa fa-plus" aria-hidden="true"></i>
+                                        </button>
+                                        <button class="btn btn-danger" ng-click="univCtrl.unsubscribe(rso)" ng-if="rso.subscribed">Unsubscribe
+                                            <i class="fa fa-plus" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
                                     <button class="btn btn-info" ng-click="univCtrl.details(rso.id)">Details
                                         <i class="fa fa-eye" aria-hidden="true"></i>
                                     </button>

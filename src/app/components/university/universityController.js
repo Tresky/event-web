@@ -18,13 +18,31 @@ angular.module('app')
       $log.log('Function was called')
     }
 
-    vm.subscribe = function (rsoId) {
+    vm.subscribe = function (rso) {
       var request = {
-        rsoId: rsoId,
+        rsoId: rso.id,
       }
 
       Subscription.create(request)
         .then((response) => {
+          var index = _.indexOf(vm.rsoData, rso);
+
+          vm.rsoData[index].subscribed = true
+        }, (response) => {
+          $log.log('Failure', response)
+          $state.go('dashboard')
+        })
+    }
+
+    vm.unsubscribe = function (rso) {
+      console.log(rso, vm.subList)
+      var subIndex = _.findIndex(vm.subList, {rsoId: rso.id});
+
+      Subscription.destroy(vm.subList[subIndex].id)
+        .then((response) => {
+          var index = _.indexOf(vm.rsoData, rso);
+
+          vm.rsoData[index].subscribed = false
           $log.log('Success', response)
         }, (response) => {
           $log.log('Failure', response)
@@ -68,7 +86,7 @@ angular.module('app')
                 rso.subscribed = !!_.find(vm.subList, {rsoId: rso.id})
               })
 
-              c
+
               console.log(vm.rsoData)
             }, (response) => {
               $log.log('Subscription findall Failure', response)
