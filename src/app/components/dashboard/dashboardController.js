@@ -147,14 +147,6 @@ angular.module('app')
           userId: $rootScope.currentUser.id
         }
 
-        Rso.findAll(vm.univId, request)
-          .then((response) => {
-            vm.rsoList = response
-            $log.log('RSO findall Success', response)
-          }, (response) => {
-            $log.log('RSO findall Failure', response)
-          })
-
         vm.getUniversityName = (univId) => {
           for (var i = 0, len = vm.univList.length; i < len; i++) {
             if (vm.univList[i].id == univId) {
