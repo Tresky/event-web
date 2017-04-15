@@ -9,11 +9,36 @@
 import './eventStyles.styl'
 
 angular.module('app')
-  .controller('EventController', function ($log, Event, Comment, University, $stateParams, $state) {
+  .controller('EventController', function ($log, Event, Comment, University, $stateParams, $state, $scope, _) {
     var vm = this
     vm.test = 'testing'
     vm.uniId = $stateParams.uniId
     vm.eventId = $stateParams.eventId
+
+    $scope.$on('commentCreated', function (evt, args) {
+      vm.comments.push(args)
+    })
+
+    $scope.$on('commentRemoved', function (evt, args) {
+      Comment.destroy(vm.uniId, vm.eventId, args)
+        .then((response) => {
+          console.log(vm.comments, 'before')
+          _.remove(vm.comments, function (comm) {
+            return comm.id == response.id
+          })
+          console.log(vm.comments, 'after')
+          $log.log('Success', response)
+        }, (response) => {
+          $log.log('Failure', response)
+          $state.go('dashboard')
+        })
+    })
+
+    $scope.$on('commentUpdated', function (evt, args) {
+      let index = _.findIndex(vm.comments, {id: args.id})
+      vm.comments[index]._editing = false;
+      console.log(index);
+    })
 
     vm.getDate = (str) => {
       var val = new Date(str)
@@ -48,7 +73,7 @@ angular.module('app')
       Comment.findAll(vm.uniId, vm.eventId)
         .then((response) => {
           vm.comments = response
-          console.log('asdf');
+          console.log(response, 'asdfasdf')
           $log.log('Success', response)
         }, (response) => {
           $log.log('Failure', response)

@@ -10,15 +10,26 @@
           <img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar"
                class="img-circle"/>
         </span>
+        <div class="dropdown pull-right">
+          <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+            Options<i class="fa fa-arrow"></i>
+            <span class="caret"></span></button>
+          <ul class="dropdown-menu">
+            <li ng-if="!comment._editing"><a href="" ng-click="comment._editing = true">Edit</a></li>
+            <li ng-if="comment._editing"><a href="" ng-click="eventChatCtrl.saveComment(comment)">Save</a></li>
+            <li><a href="" ng-click="eventChatCtrl.removeComment(comment.id)">Delete</a></li>
+          </ul>
+        </div>
         <div class="chat-body clearfix">
           <div class="header">
-            <strong class="primary-font">{{comment.name}}</strong>
+            <strong class="primary-font">{{comment.user.firstName}} {{comment.user.lastName}}</strong>
           </div>
           <div class="col-md-12">
             Comment:
-            <p>
+            <p ng-if="!comment._editing">
               {{comment.message}}
             </p>
+            <input ng-if="comment._editing" ng-model="comment.message">
           </div>
         </div>
       </li>
@@ -30,7 +41,7 @@
       <input id="btn-input" type="text" class="form-control input-sm"
              placeholder="Type your message here..." ng-model="eventChatCtrl.commentText"/>
       <span class="input-group-btn">
-        <button class="btn btn-warning btn-sm" id="btn-chat" ng-click="eventChatCtrl.sendComment()">
+        <button class="btn btn-warning btn-sm" id="btn-chat" ng-click="eventChatCtrl.createComment()">
             Send
         </button>
       </span>
