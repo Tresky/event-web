@@ -32,10 +32,6 @@ angular.module('app')
       $location.path('/university/' + $stateParams.uniId + "/event/" + eventId);
     }
 
-    vm.getEventDetails = function (eventId) {
-      $location.path('university/' + vm.uniId + '/event/' + eventId);
-    }
-
     vm.init = function () {
 
       Rso.findById(vm.uniId, vm.rsoId)
