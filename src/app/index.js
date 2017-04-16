@@ -6,6 +6,8 @@ import uiNotification from 'angular-ui-notification'
 //import bootstrapUi from 'angular-ui-bootstrap'
 import socialshare from 'angular-socialshare'
 
+require('angular-ui-notification/dist/angular-ui-notification.css')
+
 import * as _ from 'lodash'
 
 import './styles/index.styl'

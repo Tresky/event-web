@@ -21,6 +21,12 @@
         <div class="col-md-12">
             <i class="fa fa-envelope-o" aria-hidden="true"></i> Email: {{email}}
         </div>
+        <div class="col-md-12">
+            <i class="fa fa-user-secret" aria-hidden="true"></i> Privacy Level:
+            <span ng-show="privacyLevel == 1">University</span>
+            <span ng-show="privacyLevel == 2">Private</span>
+            <span ng-show="privacyLevel == 3">Public</span>
+        </div>
     </div>
     <div class="panel-footer">
     </div>
