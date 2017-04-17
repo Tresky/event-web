@@ -1,0 +1,164 @@
+<div class="container-fluid">
+  <div class="row top-buffer">
+    <div class="col-md-10 col-md-offset-1">
+      <input type="text" class="form-control" autocomplete="off" placeholder="Enter Feed URL" ng-model="rssCtrl.loadUrl" />
+      <button class="btn btn-info" type="button" ng-click="rssCtrl.load()">Load</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="text-center">RSS Feed:</h3>
+        </div>
+        <div class="panel-body pre-scrollable">
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th>Event</th>
+              <th>Date</th>
+              <th>Add</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="feed in rssCtrl.rssFeed">
+              <td>{{ feed.title }}</td>
+              <td>{{ feed.pubDate }}</td>
+              <td>
+                <button class="btn btn-primary" ng-click="rssCtrl.add(feed.title, feed.pubDate, feed.description)">
+                  <i class="fa fa-eye" aria-hidden="true"></i> Add Event
+                </button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="panel-footer">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="text-center">Make Event:</h3>
+        </div>
+        <div class="panel-body">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="owned-rsos">RSO:</label>
+              <select id="owned-rsos" class="form-control"
+                      ng-model="rssCtrl.eventData.rsoId"
+                      ng-options="obj.id as obj.name for obj in rssCtrl.rsoList"></select>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="event-name">Name:</label>
+              <input type="text" class="form-control" id="event-name" ng-model="rssCtrl.eventData.name">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="event-type">Type:</label>
+              <select id="event-type" class="form-control" ng-model="rssCtrl.eventData.type"></select>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="event-category">Category:</label>
+              <select id="event-category" class="form-control" ng-model="rssCtrl.eventData.category">
+                <option value="test">test</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="description">Description:</label>
+              <textarea class="form-control" rows="5" id="description"
+                        ng-model="rssCtrl.eventData.description"></textarea>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="event-date">Start Date:</label>
+              <input id="event-date" class="form-control" ng-model="rssCtrl.startDate" type="date">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="event-time-start">Start Time:</label>
+              <input id="event-time-start" class="form-control" ng-model="rssCtrl.startTime" type="time">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="event-date-end">End Date:</label>
+              <input id="event-date-end" class="form-control" ng-model="rssCtrl.endDate" type="date">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="event-time-end">End Time:</label>
+              <input id="event-time-end" class="form-control" ng-model="rssCtrl.endTime" type="time">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="event-phone">Phone:</label>
+              <input id="event-phone" class="form-control" ng-model="rssCtrl.eventData.contactPhone">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="event-email">Email:</label>
+              <input id="event-email" class="form-control" ng-model="rssCtrl.eventData.contactEmail">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="event-privacy">Privacy:</label>
+              <select id="event-privacy" class="form-control" ng-model="rssCtrl.eventData.privacy">
+                <option value="1">RSO Only</option>
+                <option value="2">Private</option>
+                <option value="3">Public</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="event-location-name">Location Name:</label>
+              <input id="event-location-name" class="form-control" ng-model="rssCtrl.eventData.locationName">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="event-location-lat">Location Latitude:</label>
+              <input id="event-location-lat" class="form-control" ng-model="rssCtrl.eventData.latitude">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="event-location-long">Location Longitude:</label>
+              <input id="event-location-long" class="form-control" ng-model="rssCtrl.eventData.longitude">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="event-image">Image URL:</label>
+              <input id="event-image" class="form-control" ng-model="rssCtrl.eventData.imageUrl">
+            </div>
+          </div>
+          <div class="col-md-12">
+            <button class="btn btn-success pull-right" ng-click="rssCtrl.createEvent()">
+              Create Event
+            </button>
+          </div>
+        </div>
+        <div class="panel-footer">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
