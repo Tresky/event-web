@@ -31,7 +31,10 @@ angular.module('app', [
     '$locationProvider',
     '$authProvider',
     '$windowProvider',
-    ($stateProvider, $urlRouterProvider, $locationProvider, $authProvider, $windowProvider) => {
+    '$httpProvider',
+    ($stateProvider, $urlRouterProvider, $locationProvider, $authProvider, $windowProvider, $httpProvider) => {
+      $httpProvider.interceptors.push('rss2jsonInterceptor');
+
       // Allow the use of HTML5 state modes
       $locationProvider.html5Mode(true)
 
@@ -105,6 +108,15 @@ angular.module('app', [
             loginRequired: loginRequired
           }
         })
+        .state('rss', {
+          url: '/rss',
+          template: require('./components/rss/rssView.html'),
+          controller: 'RssController',
+          controllerAs: 'rssCtrl',
+          resolve: {
+            loginRequired: loginRequired
+          }
+        })
         .state('register', {
           url: '/register',
           template: require('./components/register/registerView.html'),
@@ -145,6 +157,18 @@ angular.module('app', [
         $rootScope.currentUser = angular.fromJson($window.localStorage.currentUser)
       }
     }])
+    .factory('rss2jsonInterceptor', function() {
+     return {
+      request: function(config){
+       //Check for the host
+       var regex = /api.rss2json.com/i
+       if(regex.test(config.url))
+        //Detach the header
+        delete config.headers.Authorization
+       return config
+      }
+     }
+    })
 
 require('./services/index.js')
 require('./components/index.js')
