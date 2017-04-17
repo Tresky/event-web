@@ -9,7 +9,7 @@
 import './eventStyles.styl'
 
 angular.module('app')
-  .controller('EventController', function ($log, Event, Comment, University, $stateParams, $state, $scope, _) {
+  .controller('EventController', function ($log, Event, Comment, University, $stateParams, $state, $scope, _, Notification) {
     var vm = this
     vm.test = 'testing'
     vm.uniId = $stateParams.uniId
@@ -17,7 +17,10 @@ angular.module('app')
     vm.eventRating = null
 
     vm.rateEvent = function () {
-      vm.eventData.rating = vm.eventRating
+      if(!vm.eventRating)
+        return
+
+      vm.eventData.rating = parseInt(vm.eventRating)
 
       Event.update(vm.uniId, vm.eventData)
         .then((response) => {
