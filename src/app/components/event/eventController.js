@@ -9,11 +9,33 @@
 import './eventStyles.styl'
 
 angular.module('app')
-  .controller('EventController', function ($log, Event, Comment, University, $stateParams, $state, $scope, _) {
+  .controller('EventController', function ($log, Event, Comment, University, $stateParams, $state, $scope, _, Notification) {
     var vm = this
     vm.test = 'testing'
     vm.uniId = $stateParams.uniId
     vm.eventId = $stateParams.eventId
+    vm.eventRating = null
+
+    vm.rateEvent = function () {
+      if(!vm.eventRating)
+        return
+
+      vm.eventData.rating = parseInt(vm.eventRating)
+
+      Event.update(vm.uniId, vm.eventData)
+        .then((response) => {
+          $log.log('Success', response)
+          Notification.success(
+            {
+              message: 'Successfully rated the event.',
+              positionY: 'bottom',
+              positionX: 'right'
+            }
+          )
+        }, (response) => {
+          $log.log('Failure', response)
+        })
+    }
 
     $scope.$on('commentCreated', function (evt, args) {
       vm.comments.push(args)
@@ -72,7 +94,6 @@ angular.module('app')
       Comment.findAll(vm.uniId, vm.eventId)
         .then((response) => {
           vm.comments = response
-          console.log(response, 'asdfasdf')
           $log.log('Success', response)
         }, (response) => {
           $log.log('Failure', response)
