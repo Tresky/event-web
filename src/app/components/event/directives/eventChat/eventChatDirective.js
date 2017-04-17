@@ -14,6 +14,8 @@ angular.module('app')
         vm.eventId = $stateParams.eventId
 
         vm.createComment = function () {
+          if(!vm.commentText)
+            return
           let request = {
             message: vm.commentText,
             name: $rootScope.currentUser.firstName + ' ' + $rootScope.currentUser.lastName

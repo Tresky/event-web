@@ -14,6 +14,25 @@ angular.module('app')
     vm.test = 'testing'
     vm.uniId = $stateParams.uniId
     vm.eventId = $stateParams.eventId
+    vm.eventRating = null
+
+    vm.rateEvent = function () {
+      vm.eventData.rating = vm.eventRating
+
+      Event.update(vm.uniId, vm.eventData)
+        .then((response) => {
+          $log.log('Success', response)
+          Notification.success(
+            {
+              message: 'Successfully rated the event.',
+              positionY: 'bottom',
+              positionX: 'right'
+            }
+          )
+        }, (response) => {
+          $log.log('Failure', response)
+        })
+    }
 
     $scope.$on('commentCreated', function (evt, args) {
       vm.comments.push(args)
@@ -72,7 +91,6 @@ angular.module('app')
       Comment.findAll(vm.uniId, vm.eventId)
         .then((response) => {
           vm.comments = response
-          console.log(response, 'asdfasdf')
           $log.log('Success', response)
         }, (response) => {
           $log.log('Failure', response)
