@@ -1,5 +1,6 @@
 // Services
 import './ServerUrls.js'
+import './Service.js'
 
 // HTTP Services
 import './http-services/Auth.js'
