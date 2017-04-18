@@ -188,6 +188,8 @@ angular.module('app')
         })
 
         vm.setFeed = (uniId) => {
+          vm.rsoFeed = []
+
           if (uniId) {
             vm.univId = uniId
           } else {
@@ -209,22 +211,33 @@ angular.module('app')
               vm.univList = data
             })
 
+          Event.findAll(vm.univId, { privacy: 3})
+            .then((publicEvents) => {
+              vm.rsoFeed = publicEvents
+            })
+
           //get RSO subscription
           let payload = {userId: $rootScope.currentUser.id}
           Subscription.findAll(payload)
             .then((response) => {
               vm.subList = response
 
-              var rsoFeed = []
-              for (var i = 0, len = response.length; i < len; i++) {
-                Event.findAll(vm.univId, {rsoId: response[i].rsoId})
+              console.log('SUBS', response)
+              _.each(vm.subList, function(sub) {
+                Event.findAll(vm.univId, {rsoId: sub.rsoId})
                   .then((eventRes) => {
-                    rsoFeed = rsoFeed.concat(eventRes)
-                    vm.rsoFeed = rsoFeed
+                    console.log('EVENTS', eventRes)
+                    vm.rsoFeed = _.uniqBy(_.concat(vm.rsoFeed, eventRes), 'id')
+                    // rsoFeed = rsoFeed.concat(eventRes)
+                    // vm.rsoFeed = rsoFeed
                   }, (eventRes) => {
                     $log.log('Event findall Failure', eventRes)
                   })
-              }
+              })
+
+              // // var rsoFeed = []
+              // for (var i = 0, len = response.length; i < len; i++) {
+              // }
             }, (response) => {
               $log.log('Subscription findall Failure', response)
             })
