@@ -20,6 +20,8 @@
                     <div class="panel-footer" ng-if="rsoCtrl.subList">
                         <button class="btn btn-lg btn-success" ng-click="rsoCtrl.subscribe()" ng-if="!rsoCtrl.rsoData.subscribed">Subscribe</button>
                         <button class="btn btn-lg btn-danger" ng-click="rsoCtrl.unsubscribe()" ng-if="rsoCtrl.rsoData.subscribed">Unsubscribe</button>
+                        <button class="btn btn-lg btn-success" ng-click="rsoCtrl.toggleJoined()" ng-if="!rsoCtrl.isJoin()">Join RSO</button>
+                        <button class="btn btn-lg btn-danger" ng-click="rsoCtrl.toggleJoined()" ng-if="rsoCtrl.isJoin()">Leave RSO</button>
                     </div>
                 </div>
             </div>

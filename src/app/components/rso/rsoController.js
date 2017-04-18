@@ -9,7 +9,7 @@
 import './rsoStyles.styl'
 
 angular.module('app')
-  .controller('RsoController', function ($log, $location, Rso, $stateParams, $rootScope, $state, University, Subscription, Event) {
+  .controller('RsoController', function ($log, $location, Rso, $stateParams, $rootScope, $state, University, Subscription, Event, Service) {
     var vm = this
     vm.test = 'testing'
     vm.uniId = $stateParams.uniId
@@ -28,6 +28,14 @@ angular.module('app')
         }, (response) => {
           $log.log('Failure', response)
         })
+    }
+
+    vm.isJoin = function () {
+      return Service.isJoined()
+    }
+
+    vm.toggleJoined = function () {
+      Service.toggleJoined();
     }
 
     vm.unsubscribe = function () {
