@@ -1,0 +1,78 @@
+<div class="container-fluid">
+    <div class="row top-buffer">
+        <div class="col-md-5 col-md-offset-1">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="well">
+                        <div ng-map center="[{{univCtrl.uniData.latitude}}, {{univCtrl.uniData.longitude}}]"></div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="text-center">University Details:</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-md-12">
+                                <i class="fa fa-graduation-cap" aria-hidden="true"></i> Name: {{univCtrl.uniData.name}}
+                            </div>
+                            <div class="col-md-12">
+                                <i class="fa fa-align-left" aria-hidden="true"></i> Description: {{univCtrl.uniData.description}}
+                            </div>
+                            <div class="col-md-12">
+                                <i class="fa fa-clock-o" aria-hidden="true"></i> Created at: {{univCtrl.getDateTime(univCtrl.uniData.createdAt)}}
+                            </div>
+                            <div class="col-md-12">
+                                <i class="fa fa-clock-o" aria-hidden="true"></i> Updated at: {{univCtrl.getDateTime(univCtrl.uniData.updatedAt)}}
+                            </div>
+                        </div>
+                        <div class="panel-footer">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="list-panel panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-list"><span> RSO List</span></i>
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <ul class="list">
+                      <li class="left clearfix" ng-repeat='rso in univCtrl.rsoData'>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <div class="btn-group-vertical">
+                                    <div ng-if="univCtrl.subList">
+                                        <button class="btn btn-success" ng-click="univCtrl.subscribe(rso)" ng-if="!rso.subscribed">Subscribe
+                                            <i class="fa fa-plus" aria-hidden="true"></i>
+                                        </button>
+                                        <button class="btn btn-danger" ng-click="univCtrl.unsubscribe(rso)" ng-if="rso.subscribed">Unsubscribe
+                                            <i class="fa fa-plus" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+                                    <button class="btn btn-info" ng-click="univCtrl.details(rso.id)">Details
+                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-md-9">
+                                <h3 class="center">{{rso.name}}</h3>
+                            </div>
+                        </div>
+                      </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row top-buffer">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="well">
+                <img src="{{univCtrl.uniData.imageUrl}}" class="img-responsive img-center" alt="Responsive image">
+            </div>
+        </div>
+    </div>
+</div>

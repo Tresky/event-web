@@ -4,3 +4,4 @@ config
 node_modules
 src/bower_components
 yarn.lock
+.idea

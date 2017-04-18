@@ -9,13 +9,13 @@ var PORT = process.env.PORT || 5000;
 
 module.exports = {
   entry: [
-    // 'webpack/hot/dev-server',
+    'webpack/hot/dev-server',
     './src/app/index.js'
   ],
   // resolve: ['', '.js', '.css', '.styl', '.html'],
   output: {
     path: path.resolve(__dirname, 'build'),
-    publicPath: 'http://localhost:5000',
+    publicPath: 'http://localhost:5000/',
     filename: '[name].bundle.js',
     chunkFilename: '[name].bundle.js'
   },

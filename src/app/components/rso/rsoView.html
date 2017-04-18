@@ -1,0 +1,54 @@
+<div class="row top-buffer">
+    <div class="col-md-5 col-md-offset-1">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="text-center">RSO Details:</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="col-md-12">
+                            <i class="fa fa-info" aria-hidden="true"></i> Name: {{rsoCtrl.rsoData.name}}
+                        </div>
+                        <div class="col-md-12">
+                            <i class="fa fa-align-left" aria-hidden="true"></i> Description: {{rsoCtrl.rsoData.description}}
+                        </div>
+                        <div class="col-md-12">
+                            <i class="fa fa-graduation-cap" aria-hidden="true"></i> University: {{rsoCtrl.uniData.name}}
+                        </div>
+                    </div>
+                    <div class="panel-footer" ng-if="rsoCtrl.subList">
+                        <button class="btn btn-lg btn-success" ng-click="rsoCtrl.subscribe()" ng-if="!rsoCtrl.rsoData.subscribed">Subscribe</button>
+                        <button class="btn btn-lg btn-danger" ng-click="rsoCtrl.unsubscribe()" ng-if="rsoCtrl.rsoData.subscribed">Unsubscribe</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-5">
+        <div class="list-panel panel panel-default">
+            <div class="panel-heading">
+                <i class="fa fa-list"><span> Event List</span></i>
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <ul class="list">
+                    <li class="left clearfix" ng-repeat='event in rsoCtrl.eventData' ng-show="event.rsoId == rsoCtrl.rsoId">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <div class="btn-group-vertical">
+                                    <button class="btn btn-info"  ng-click="rsoCtrl.viewEvent(event.id)">Details
+                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-md-9">
+                                <h3 class="center">{{event.name}}</h3>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

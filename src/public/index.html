@@ -8,8 +8,18 @@
     <title>App</title>
 
     <base href="/">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
   </head>
   <body>
-    <div ui-view class="site"></div>
+    <div nav-bar></div>
+    <div id="wrapper">
+      <div side-bar></div>
+      <div side-bar-button class="top-padding"></div>
+      <div ui-view class="site"></div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/g/jquery@3.1.1,bootstrap@3.3.7"></script>
+    <script src="http://maps.google.com/maps/api/js?key=AIzaSyD3eJ__9R3C9x9I6NGrElcQRTr6pIPTkFc"></script>
+    <!-- TODO: Obtain Google Map API Key: https://developers.google.com/maps/documentation/javascript/get-api-key -->
   </body>
 </html>
