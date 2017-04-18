@@ -12,6 +12,10 @@ angular.module('app')
         vm.toggle = function () {
           $('#wrapper').toggleClass('toggled')
         }
+
+        vm.isAuthenticated = () => {
+          return $auth.isAuthenticated()
+        }
       }]
     }
   }
