@@ -38,6 +38,24 @@ angular.module('app')
       Service.toggleJoined();
     }
 
+    vm.rsoOnly = function () {
+      var event = {
+        createById: 1,
+        name: 'Secret Event',
+        description: 'Secret Description',
+        latitude: 0,
+        longitude: 0,
+        imageUrl: 'https://anchore.com/wp-content/uploads/2017/02/Interview-Secrets.jpg',
+        startTime: new Date(),
+        endTime: new Date(),
+        privacy: 1,
+        rating: 5,
+        category: 'Secret Society',
+        rsoId: 1,
+        universityId: 1
+      }
+    }
+
     vm.unsubscribe = function () {
       var subIndex = _.findIndex(vm.subList, {rsoId: vm.rsoData.id});
 

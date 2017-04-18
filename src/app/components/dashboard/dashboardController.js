@@ -214,6 +214,24 @@ angular.module('app')
           Event.findAll(vm.univId, { privacy: 3})
             .then((publicEvents) => {
               vm.rsoFeed = publicEvents
+
+              if (Service.isJoined()) {
+                vm.rsoFeed = _.concat(vm.rsoFeed, [{
+                  createById: 1,
+                  name: 'Secret Event',
+                  description: 'Secret Description',
+                  latitude: 0,
+                  longitude: 0,
+                  imageUrl: 'https://anchore.com/wp-content/uploads/2017/02/Interview-Secrets.jpg',
+                  startTime: new Date(),
+                  endTime: new Date(),
+                  privacy: 1,
+                  rating: 5,
+                  category: 'Secret Society',
+                  rsoId: 1,
+                  universityId: 1
+                }])
+              }
             })
 
           //get RSO subscription
