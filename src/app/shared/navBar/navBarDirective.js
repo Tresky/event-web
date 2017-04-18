@@ -12,6 +12,13 @@ angular.module('app')
         vm.isAuthenticated = () => {
           return $auth.isAuthenticated()
         }
+
+        vm.collapse = function () {
+          if($('#wrapper').hasClass('toggled'))
+          {
+            $('#wrapper').toggleClass('toggled')
+          }
+        }
       }]
     }
   }

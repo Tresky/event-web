@@ -19,7 +19,7 @@
                     <a href="/register">Register</a>
                 </li>
                 <li>
-                    <a href="/logout" ng-if="navbarCtrl.isAuthenticated()">Logout</a>
+                    <a href="/logout" ng-if="navbarCtrl.isAuthenticated()" ng-click="navbarCtrl.collapse()">Logout</a>
                     <a href="/login" ng-if="!navbarCtrl.isAuthenticated()">Login</a>
                 </li>
             </ul>
